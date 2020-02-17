@@ -6,17 +6,15 @@ import i18n from '../../locale/i18n'
 import * as Animatable from 'react-native-animatable';
 import {NavigationEvents} from "react-navigation";
 
-class Login extends Component {
+class ForgetPassword extends Component {
     constructor(props){
         super(props);
         this.state = {
             phone               : '',
-            password            : '',
             deviceId            : '',
             userId              : null,
             type                : 0,
             phoneStatus         : 0,
-            passwordStatus      : 0,
             spinner             : false,
         }
     }
@@ -27,10 +25,6 @@ class Login extends Component {
             this.setState({phoneStatus: 1})
         }
 
-        if (type === 'password' || this.state.password !== '') {
-            this.setState({passwordStatus: 1})
-        }
-
     }
 
     unActiveInput(type) {
@@ -39,32 +33,25 @@ class Login extends Component {
             this.setState({phoneStatus: 0})
         }
 
-        if (type === 'password' && this.state.password === '') {
-            this.setState({passwordStatus: 0})
-        }
-
     }
 
     validate = () => {
-        let isError = false;
-        let msg = '';
+        let isError     = false;
+        let msg         = '';
 
         if (this.state.phone.length <= 0) {
-            isError = true;
-            msg = i18n.t('namereq');
-        } else if (this.state.password.length <= 0) {
-            isError = true;
-            msg = i18n.t('pass');
+            isError     = true;
+            msg         = i18n.t('namereq');
         }
         if (msg !== '') {
             Toast.show({
-                text: msg,
-                type: "danger",
-                duration: 3000,
-                textStyle: {
-                    color: "white",
-                    fontFamily: 'cairo',
-                    textAlign: 'center',
+                text        : msg,
+                type        : "danger",
+                duration    : 3000,
+                textStyle       : {
+                    color       : "white",
+                    fontFamily  : 'cairo',
+                    textAlign   : 'center',
                 }
             });
         }
@@ -77,10 +64,10 @@ class Login extends Component {
 
         const err = this.validate();
 
-        if (!err){
-            const {phone, password, deviceId , type} = this.state;
-            this.props.userLogin({ phone, password, deviceId, type }, this.props.lang);
-        }
+        // if (!err){
+        //     const {phone, password, deviceId , type} = this.state;
+        //     this.props.userLogin({ phone, password, deviceId, type }, this.props.lang);
+        // }
 
     }
 
@@ -109,13 +96,12 @@ class Login extends Component {
                 <Content contentContainerStyle={styles.bgFullWidth}>
                     <View style={[styles.position_R, styles.bgFullWidth, styles.marginVertical_15, styles.flexCenter, styles.Width_100]}>
                         <View style={[styles.overHidden, styles.marginVertical_15]}>
-                            <Animatable.View animation="bounceIn" easing="ease-out" delay={500} style={[styles.flexCenter]}>
-                                    <Image style={[styles.icoImage]} source={require('../../assets/img/icon.png')}/>
+                            <Animatable.View animation="fadeInUp" easing="ease-out" delay={500} style={[styles.flexCenter]}>
+                                <Image style={[styles.icoImage]} source={require('../../assets/img/icon.png')}/>
                             </Animatable.View>
                         </View>
                         <KeyboardAvoidingView behavior={'padding'}>
-                            <Form
-                                style={[styles.Width_100, styles.flexCenter, styles.marginVertical_10, styles.Width_90]}>
+                            <Form style={[styles.Width_100, styles.flexCenter, styles.marginVertical_10, styles.Width_90]}>
 
                                 <View
                                     style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}>
@@ -131,28 +117,8 @@ class Login extends Component {
                                     </Item>
                                 </View>
 
-                                <View
-                                    style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}>
-                                    <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}>
-                                        <Input
-                                            placeholder={i18n.translate('password')}
-                                            style={[styles.input, styles.height_50, (this.state.passwordStatus === 1 ? styles.Active : styles.noActive)]}
-                                            onChangeText={(password) => this.setState({password})}
-                                            onBlur={() => this.unActiveInput('password')}
-                                            onFocus={() => this.activeInput('password')}
-                                            secureTextEntry
-                                        />
-                                    </Item>
-                                </View>
-
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ForgetPassword')} style={[styles.marginVertical_5, styles.SelfRight]}>
-                                    <Text style={[styles.textRegular, styles.textSize_14, styles.marginVertical_5, styles.light_gray]}>
-                                        {i18n.translate('forgetPassword')}
-                                    </Text>
-                                </TouchableOpacity>
-
                                 <TouchableOpacity
-                                    style={[styles.bg_red, styles.width_150, styles.flexCenter, styles.marginVertical_15, styles.height_40]}
+                                    style={[styles.bg_red, styles.width_150, styles.flexCenter, styles.marginVertical_15, styles.height_40, styles.zIndex]}
                                     onPress={() => this.onLoginPressed()}>
                                     <Text style={[styles.textRegular, styles.textSize_14, styles.text_White]}>
                                         {i18n.translate('login')}
@@ -161,17 +127,10 @@ class Login extends Component {
 
                             </Form>
                         </KeyboardAvoidingView>
-                        <TouchableOpacity
-                            onPress         = {() => this.props.navigation.navigate('ChooseUser')}
-                            style           = {[styles.marginVertical_10, styles.flexCenter, styles.zIndex]}>
-                            <Text style     = {[styles.textRegular, styles.textSize_14, styles.text_red]}>
-                                {i18n.translate('doHaveAcc')}
-                            </Text>
-                        </TouchableOpacity>
                     </View>
                     <View style={[styles.shape_logo, styles.position_A, styles.fixItem, styles.zIndexDown]}>
-                        <Animatable.View animation="fadeIn" easing="ease-out" delay={500}>
-                                <Image style={[styles.shape_logo]} source={require('../../assets/img/shape.png')}/>
+                        <Animatable.View animation="fadeInLeft" easing="ease-out" delay={500}>
+                            <Image style={[styles.shape_logo]} source={require('../../assets/img/shape.png')}/>
                         </Animatable.View>
                     </View>
                 </Content>
@@ -182,7 +141,7 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default ForgetPassword;
 
 // const mapStateToProps = ({ auth, profile, lang }) => {
 //     return {

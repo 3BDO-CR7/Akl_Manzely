@@ -1,23 +1,20 @@
 import React, { Component } from "react";
 import {View, Text, Image, TouchableOpacity} from "react-native";
-import {Container, Content,} from 'native-base'
+import {Container, Content} from 'native-base'
 import styles from '../../assets/style';
-
-import i18n from "../../locale/i18n";
+import i18n from '../../locale/i18n'
 import * as Animatable from 'react-native-animatable';
-
 
 class ChooseUser extends Component {
     constructor(props){
         super(props);
         this.state = {
-            spinner         : false
+            spinner             : false,
         }
     }
 
     async componentWillMount() {
 
-        // this.setState({spinner: true});
 
     }
 
@@ -27,59 +24,53 @@ class ChooseUser extends Component {
 
             <Container>
 
-                <Spinner
-                    visible           = { this.state.spinner }
-                />
-
                 <Content contentContainerStyle={styles.bgFullWidth}>
+                    <View style={[styles.position_R, styles.bgFullWidth, styles.flexCenter, styles.Width_100]}>
 
-                    <View style={[ styles.viewLang, styles.flexCenter, styles.windowWidth ]}>
-
-                        <View style={styles.overHidden}>
-                            <Animatable.View animation="fadeInDown" easing="ease-out" delay={500}>
-                                <Image style={[styles.sizeImage , styles.marginVertical_15]} source={require('../../assets/img/icon.png')}/>
+                        <View style={[styles.overHidden, styles.marginVertical_25, styles.icoImage]}>
+                            <Animatable.View animation="bounceIn" easing="ease-out" delay={500} style={[styles.flexCenter]}>
+                                <Image style={[styles.icoImage]} source={require('../../assets/img/icon.png')}/>
                             </Animatable.View>
                         </View>
 
-                        <View style={styles.Width_90}>
-                            <Animatable.View animation="fadeIn" easing="ease-out" delay={600} style={styles.Width_100}>
-                                <TouchableOpacity
-                                    style={[
-                                        styles.bg_turquoise,
-                                        styles.Width_100,
-                                        styles.flexCenter,
-                                        styles.Radius_50,
-                                        styles.marginHorizontal_15,
-                                        styles.marginVertical_15,
-                                        styles.height_50
-                                    ]}
-                                    onPress={() => this.props.navigation.navigate('Home')}>
-                                    <Text style={[styles.textRegular , styles.textSize_18, styles.text_White, styles.paddinVertical_10]}>
-                                        {i18n.translate('visitor')}
-                                    </Text>
-                                </TouchableOpacity>
-                            </Animatable.View>
-                            <Animatable.View animation="fadeIn" easing="ease-out" delay={800} style={styles.Width_100}>
-                                <TouchableOpacity
-                                    style={[
-                                        styles.bg_lightGreen,
-                                        styles.Width_100,
-                                        styles.flexCenter,
-                                        styles.Radius_50,
-                                        styles.marginHorizontal_15,
-                                        styles.marginVertical_15,
-                                        styles.height_50
-                                    ]}
-                                    onPress={() => this.props.navigation.navigate('Login')}>
-                                    <Text style={[styles.textRegular , styles.textSize_18, styles.text_White, styles.paddinVertical_10]}>
-                                        {i18n.translate('member')}
-                                    </Text>
-                                </TouchableOpacity>
-                            </Animatable.View>
+                        <View style={[styles.marginVertical_25]}>
+
+                            <View style={[styles.overHidden]}>
+                                <Animatable.View animation="bounceInRight" easing="ease-out" delay={500} style={[styles.flexCenter]}>
+
+                                    <TouchableOpacity
+                                        style           = {[styles.bg_red, styles.width_150, styles.flexCenter, styles.marginVertical_10, styles.height_40]}
+                                        onPress         = {() => this.props.navigation.navigate('Register')}>
+                                        <Text style     = {[styles.textRegular, styles.textSize_14, styles.text_White]}>
+                                            {i18n.translate('loginUser')}
+                                        </Text>
+                                    </TouchableOpacity>
+
+                                </Animatable.View>
+                            </View>
+
+                            <View style={[styles.overHidden]}>
+                                <Animatable.View animation="bounceInLeft" easing="ease-out" delay={700} style={[styles.flexCenter]}>
+
+                                    <TouchableOpacity
+                                        style           = {[styles.bg_black, styles.width_150, styles.flexCenter, styles.marginVertical_10, styles.height_40]}
+                                        onPress         = {() => this.props.navigation.navigate('Register')}>
+                                        <Text style     = {[styles.textRegular, styles.textSize_14, styles.text_White]}>
+                                            {i18n.translate('loginchef')}
+                                        </Text>
+                                    </TouchableOpacity>
+
+                                </Animatable.View>
+                            </View>
+
                         </View>
 
                     </View>
-
+                    <View style={[styles.shape_logo, styles.position_A, styles.fixItem]}>
+                        <Animatable.View animation="fadeIn" easing="ease-out" delay={500}>
+                            <Image style={[styles.shape_logo]} source={require('../../assets/img/shape.png')}/>
+                        </Animatable.View>
+                    </View>
                 </Content>
 
             </Container>

@@ -34,6 +34,12 @@ const en = {
     'home'                              : 'home',
     'about'                             : 'about the application',
     'gohome'                            : 'go to main',
+    'birthday'                          : 'birthday',
+    'enterbirthday'                     : 'enter birthday',
+    'enterqualification'                : 'enter qualification',
+    'qualification'                     : 'qualification',
+    'enternationality'                  : 'enter nationality',
+    'nationality'                       : 'nationality',
     'search'                            : 'search',
     'Notifications'                     : 'notifications',
     'setting'                           : 'settings',
@@ -92,7 +98,7 @@ const en = {
     'producer'                          : 'product type',
     'monyproducer'                      : 'product price',
     'sallproducer'                      : 'discount rate',
-    'searchCat'                         : 'search by section',
+    'searchCat'                         : 'search meal or chef',
     'searchcom'                         : 'write something for your search',
     'nopro'                             : 'no service provider',
     'nodata'                            : 'Nothing to display',
@@ -164,6 +170,8 @@ const en = {
     'confirmationText'                  : 'Approval has been confirmed and notification will be sent to the customer of approval and execution of the order',
     'confirmationPayment'               : 'Payment has been confirmed and communicated with you while any problem arises',
     'notInvalidCode'                    : 'The code is invalid',
+    'loginUser'                         : 'register a user',
+    'loginchef'                         : 'register a chef',
 
 };
 

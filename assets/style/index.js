@@ -155,6 +155,18 @@ const styles = ({
     paddingVertical_30 : {
         paddingVertical      : 30
     },
+    paddingRight : {
+        paddingRight         : 0
+    },
+    paddingLeft : {
+        paddingLeft          : 0
+    },
+    paddingRight_5 : {
+        paddingRight         : 5
+    },
+    paddingLeft_5 : {
+        paddingLeft          : 5
+    },
 
     // Padding Space Horizontal
 
@@ -243,7 +255,10 @@ const styles = ({
     // Style Border
 
     Border : {
-      borderWidth           : 1,
+      borderWidth                 : 1,
+    },
+    BorderNone : {
+        borderWidth               : 0,
     },
     border_gray : {
         borderColor               : COLORS.gray
@@ -287,6 +302,14 @@ const styles = ({
     },
     SelfCenter : {
         alignSelf           : 'center'
+    },
+    SelfRight : {
+        alignSelf           : 'flex-end',
+        justifyContent      : 'center',
+    },
+    SelfLeft : {
+        alignSelf           : 'flex-start',
+        justifyContent      : 'center',
     },
     rowGroup : {
         flexDirection       : "row",
@@ -358,49 +381,62 @@ const styles = ({
     // Width
 
     Width_50 : {
-        width               : '50%'
+        width                       : '50%'
     },
     Width_70 : {
-        width               : '70%'
+        width                       : '70%'
     },
     Width_80 : {
-        width               : '80%'
+        width                       : '80%'
     },
     Width_90 : {
-        width               : '90%'
+        width                       : '90%'
     },
     Width_100 : {
-        width               : '100%'
+        width                       : '100%'
+    },
+    width_40 : {
+        width                       : 40
     },
     width_50 : {
-        width               : 50
+        width                       : 50
     },
     width_70 : {
-        width               : 70
+        width                       : 70
     },
     width_80 : {
-        width               : 80
+        width                       : 80
     },
     width_90 : {
-        width               : 90
+        width                       : 90
     },
     width_100 : {
-        width               : 100
+        width                       : 100
+    },
+    width_150 : {
+        width                       : 150
+    },
+    width_200 : {
+        width                       : 200
     },
 
     // Style position
 
     position_R : {
         position                    : 'relative',
-        zIndex                      : 999
     },
     position_A : {
         position                    : 'absolute',
-        zIndex                      : 9999
+    },
+    zIndex : {
+        zIndex                      : 999,
+    },
+    zIndexDown : {
+        zIndex                      : -1,
     },
     fixItem : {
-        bottom                      : -50,
-        right                       : -20
+        bottom                      : -60,
+        right                       : -10
     },
     top_0 : {
         top                         : 0
@@ -425,6 +461,12 @@ const styles = ({
     },
     top_35 : {
         top                         : 35
+    },
+    top_40 : {
+        top                         : 40
+    },
+    top_45 : {
+        top                         : 45
     },
     bottom_0 : {
         bottom                      : 0
@@ -519,6 +561,9 @@ const styles = ({
     height_100 : {
         height                  : 100
     },
+    height_150 : {
+        height                  : 150
+    },
     height_full : {
         height                  : '100%'
     },
@@ -560,7 +605,7 @@ const styles = ({
         borderWidth         : 1,
         borderRadius        : 2,
         width               : "100%",
-        color               : COLORS.gray,
+        color               : COLORS.red,
         paddingRight        : 20,
         paddingLeft         : 20,
         textAlign           : I18nManager.isRTL ? 'right' : 'left',
@@ -568,14 +613,13 @@ const styles = ({
         fontSize            : 15,
         top                 : 0,
         height              : 45,
-        // backgroundColor     : COLORS.light_gray
     },
     textArea : {
         borderColor         : COLORS.light_gray,
         borderWidth         : 1,
         borderRadius        : 2,
         width               : "100%",
-        color               : COLORS.gray,
+        color               : COLORS.red,
         paddingRight        : 20,
         paddingLeft         : 20,
         textAlign           : 'right',
@@ -583,19 +627,14 @@ const styles = ({
         fontSize            : 15,
         top                 : 0,
         height              : 180,
-        // backgroundColor     : COLORS.light_gray
     },
     Active : {
         borderWidth           : 1,
         borderColor           : COLORS.red,
-        paddingRight          : 60,
-        paddingLeft           : 60,
     },
     noActive : {
         borderWidth           : 1,
         borderColor           : COLORS.gray,
-        paddingRight          : 20,
-        paddingLeft           : 20,
     },
 
     // Style Picker
@@ -681,6 +720,11 @@ const styles = ({
         height              : 15,
         resizeMode          : 'contain'
     },
+    headImage : {
+        width               : 20,
+        height              : 20,
+        resizeMode          : 'contain'
+    },
     iconBank : {
         width               : 35,
         height              : 35,
@@ -690,11 +734,11 @@ const styles = ({
     //  Style Header
 
     headerView : {
-        backgroundColor     : 'transparent',
+        backgroundColor     : COLORS.gray,
         zIndex              : 99,
         paddingTop          : 20,
-        paddingRight        : 15,
-        paddingLeft         : 15,
+        paddingRight        : 5,
+        paddingLeft         : 5,
         elevation           : 0,
         borderBottomWidth   : 0,
         alignItems          : 'center',
@@ -712,16 +756,28 @@ const styles = ({
     rightIcon : {
         flex                : 0
     },
+    Button : {
+        paddingRight        : 10,
+        paddingLeft         : 10,
+        paddingBottom       : 0,
+        paddingTop          : 0
+    },
 
     // Style CheckBox
 
     checkBox : {
         paddingLeft             : 0,
         paddingBottom           : 0,
-        borderRadius            : 5,
+        borderRadius            : 3,
         paddingRight            : 3
     },
 
+    // Style Drawer
+
+    drawerItemStyle: {
+        paddingHorizontal       : 17,
+        marginVertical          : 10
+    },
 
 });
 

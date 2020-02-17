@@ -8,6 +8,10 @@ import Home                     from "../components/Home";
 import Language                 from "../components/Language";
 import Login                    from "../components/Login";
 import ChooseUser               from "../components/ChooseUser";
+import Register                 from "../components/Register";
+import ForgetPassword           from "../components/ForgetPassword";
+import NewPassword              from "../components/NewPassword";
+import ActivtionAccount         from "../components/ActivtionAccount";
 import InitScreen               from "../components/InitScreen";
 import DrawerCustomization      from "./DrawerCustomization";
 
@@ -29,8 +33,26 @@ const drawerNavigator = createDrawerNavigator({
 });
 
 const AppNavigator = createStackNavigator({
-    Login : {
-        screen : Login,
+    drawerNavigator: {
+        screen: drawerNavigator,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Register : {
+        screen : Register,
+        navigationOptions: {
+            header: null
+        }
+    },
+    ActivtionAccount : {
+        screen : ActivtionAccount,
+        navigationOptions: {
+            header: null
+        }
+    },
+    NewPassword : {
+        screen : NewPassword,
         navigationOptions: {
             header: null
         }
@@ -41,14 +63,20 @@ const AppNavigator = createStackNavigator({
             header: null
         }
     },
-    Language : {
-        screen : Language,
+    ForgetPassword : {
+        screen : ForgetPassword,
         navigationOptions: {
             header: null
         }
     },
-    drawerNavigator: {
-        screen: drawerNavigator,
+    Login : {
+        screen : Login,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Language : {
+        screen : Language,
         navigationOptions: {
             header: null
         }

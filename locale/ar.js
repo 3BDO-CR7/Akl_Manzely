@@ -11,6 +11,7 @@ const ar = {
     'currentpass'               : 'كلمه المرور الحاليه',
     'newpass'                   : 'كلمه المرور الجديده',
     'confirmpass'               : 'تأكيد كلمه المرور الجديده',
+    'newmpass'                  : 'إدخال كلمه المرور الجديده',
     'actcode'                   : 'كود التفعيل',
     "save"                      : 'حفظ',
     'chickLogin'                : 'يجب عليك التسجيل آولا',
@@ -20,6 +21,12 @@ const ar = {
     'passreq'                   : 'كلمه المرور لا تقل عن 6 حروف',
     'chooseuser'                : 'يجب إختيار مستخدم',
     'PassReco'                  : 'إسترجاع كلمه المرور',
+    'birthday'                  : 'تاريخ الميلاد',
+    'enterbirthday'             : 'ادخل تاريخ الميلاد',
+    'enterqualification'        : 'ادخل المؤهل',
+    'qualification'             : 'المؤهل',
+    'enternationality'          : 'ادخل الجنس',
+    'nationality'               : 'الجنس',
     'retncode'                  : 'كود الإسترجاع',
     'register'                  : 'تسجيل جديد',
     'userName'                  : 'اسم المستخدم',
@@ -93,7 +100,7 @@ const ar = {
     'producer'                  : 'نوع المنتج',
     'monyproducer'              : 'سعر المنتج',
     'sallproducer'              : 'نسبه الخصم',
-    'searchCat'                 : 'بحث بالقسم',
+    'searchCat'                 : 'بحث بالوجبه او الشيف',
     'searchcom'                 : 'آكتب شئ ف البحث',
     'nopro'                     : 'لا يوجد مزود خدمه',
 
@@ -166,7 +173,8 @@ const ar = {
     'confirmation'              : 'تاكيد الموافقة',
     'confirmationText'          : 'تم تأكيد الموافقة وسيتم ارسال اشعار للعميل بالموافقة وتنفيذ الطلب',
     'confirmationPayment'       : 'تم تآكيد الدفع وسيتم التواصل معكم في حين ظهور آي مشكله',
-    'notInvalidCode'            : 'الكود غير صحيح',
+    'loginUser'                 : 'تسجيل كمستخدم',
+    'loginchef'                 : 'تسجيل كشيف',
 };
 
 export default ar;
