@@ -172,6 +172,9 @@ const en = {
     'notInvalidCode'                    : 'The code is invalid',
     'loginUser'                         : 'register a user',
     'loginchef'                         : 'register a chef',
+    'searchchef'                        : 'search for chef',
+    'rate'                              : 'rating',
+    'price'                             : 'enter price',
 
 };
 

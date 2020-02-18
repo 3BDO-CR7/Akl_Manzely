@@ -23,6 +23,9 @@ const styles = ({
     text_black : {
         color               : COLORS.black
     },
+    text_green : {
+        color               : COLORS.green
+    },
     text_White : {
         color               : '#FFF'
     },
@@ -40,6 +43,12 @@ const styles = ({
     },
     fontBold : {
         fontWeight          : "bold"
+    },
+    textSize_5 : {
+        fontSize            : 5,
+    },
+    textSize_10 : {
+        fontSize            : 10,
     },
     textSize_12 : {
         fontSize            : 12,
@@ -234,28 +243,40 @@ const styles = ({
     // Background Color
 
     bg_gray : {
-        backgroundColor               : COLORS.gray
+        backgroundColor                 : COLORS.gray
     },
     bg_light_gray : {
-        backgroundColor               : COLORS.light_gray
+        backgroundColor                 : COLORS.light_gray
     },
     bg_red : {
-        backgroundColor               : COLORS.red
+        backgroundColor                 : COLORS.red
     },
     bg_light_red : {
-        backgroundColor               : COLORS.light_red
+        backgroundColor                 : COLORS.light_red
     },
     bg_black : {
-        backgroundColor               : COLORS.black
+        backgroundColor                 : COLORS.black
     },
     bg_White : {
-        backgroundColor               : '#FFF'
+        backgroundColor                 : '#FFF'
+    },
+    bg_overlay : {
+        backgroundColor                 : "rgba(250, 218, 208, 0.9)"
+    },
+    overlay_white : {
+        backgroundColor                 : "rgba(255, 255, 255, 0.7)"
+    },
+    overlay_black : {
+        backgroundColor                 : "rgba(0, 0, 0, 0.5)"
     },
 
     // Style Border
 
     Border : {
       borderWidth                 : 1,
+    },
+    Border_2 : {
+        borderWidth               : 2,
     },
     BorderNone : {
         borderWidth               : 0,
@@ -278,6 +299,22 @@ const styles = ({
     border_White : {
         borderColor               : '#FFF'
     },
+    border_top : {
+        borderTopWidth            : 3,
+        borderColor               : COLORS.red
+    },
+    border_bottom : {
+        borderBottomWidth         : 3,
+        borderColor               : COLORS.red
+    },
+    border_right : {
+        borderRightWidth          : 3,
+        borderColor               : COLORS.red
+    },
+    border_left : {
+        borderLeftWidth           : 3,
+        borderColor               : COLORS.red
+    },
 
     // Style Shadow
 
@@ -296,6 +333,11 @@ const styles = ({
         justifyContent      : 'center',
         alignSelf           : 'center',
     },
+    bottomCenter : {
+        alignItems          : 'flex-end',
+        justifyContent      : 'flex-end',
+        alignSelf           : 'center',
+    },
     centerContext : {
         alignItems          : 'center',
         justifyContent      : 'center',
@@ -310,6 +352,10 @@ const styles = ({
     SelfLeft : {
         alignSelf           : 'flex-start',
         justifyContent      : 'center',
+    },
+    scroll: {
+        flexDirection       : 'row',
+        alignSelf           : 'flex-start',
     },
     rowGroup : {
         flexDirection       : "row",
@@ -380,6 +426,12 @@ const styles = ({
 
     // Width
 
+    Width_45 : {
+        width                       : '45%'
+    },
+    Width_47 : {
+        width                       : '47%'
+    },
     Width_50 : {
         width                       : '50%'
     },
@@ -391,6 +443,9 @@ const styles = ({
     },
     Width_90 : {
         width                       : '90%'
+    },
+    Width_95 : {
+        width                       : '95%'
     },
     Width_100 : {
         width                       : '100%'
@@ -563,6 +618,12 @@ const styles = ({
     },
     height_150 : {
         height                  : 150
+    },
+    height_200 : {
+        height                  : 200
+    },
+    height_250 : {
+        height                  : 250
     },
     height_full : {
         height                  : '100%'
@@ -775,9 +836,55 @@ const styles = ({
     // Style Drawer
 
     drawerItemStyle: {
-        paddingHorizontal       : 17,
+        paddingHorizontal       : 20,
         marginVertical          : 10
     },
+
+    // Style Swiper
+
+    swiper : {
+        height                  : 100,
+    },
+    viewBlock : {
+        position                :  "relative",
+    },
+    blockContent : {
+        position                : 'absolute',
+        zIndex                  : 999,
+        left                    : 0,
+        top                     : 7,
+        backgroundColor         : "rgba(211, 41, 42,0.3)",
+    },
+    paginationStyle : {
+        flexDirection           : 'column',
+        position                : 'absolute',
+        left                    : '98%',
+        zIndex                  : 999,
+        top                     : 40,
+        width                   : 20
+    },
+
+    // For App
+
+    activeTabs : {
+        backgroundColor     : '#f00',
+    },
+    noActiveTabs : {
+        backgroundColor     : COLORS.light_gray,
+    },
+    starStyle:{
+        marginHorizontal    : 1,
+    },
+    rotatTouch : {
+        transform           : [{ rotate: '50deg' }],
+    },
+    rotatIcon : {
+        transform           : [{ rotate: '-50deg' }],
+    },
+    shapeBlock : {
+        top                 : -10,
+        left                : -10,
+    }
 
 });
 

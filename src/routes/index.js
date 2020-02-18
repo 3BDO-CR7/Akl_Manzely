@@ -12,6 +12,7 @@ import Register                 from "../components/Register";
 import ForgetPassword           from "../components/ForgetPassword";
 import NewPassword              from "../components/NewPassword";
 import ActivtionAccount         from "../components/ActivtionAccount";
+import Details                  from "../components/Details";
 import InitScreen               from "../components/InitScreen";
 import DrawerCustomization      from "./DrawerCustomization";
 
@@ -41,6 +42,12 @@ const AppNavigator = createStackNavigator({
     },
     Register : {
         screen : Register,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Details : {
+        screen : Details,
         navigationOptions: {
             header: null
         }

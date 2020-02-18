@@ -114,8 +114,7 @@ class Login extends Component {
                             </Animatable.View>
                         </View>
                         <KeyboardAvoidingView behavior={'padding'}>
-                            <Form
-                                style={[styles.Width_100, styles.flexCenter, styles.marginVertical_10, styles.Width_90]}>
+                            <Form style={[styles.Width_100, styles.flexCenter, styles.marginVertical_10, styles.Width_90]}>
 
                                 <View
                                     style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}>
