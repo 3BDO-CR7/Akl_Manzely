@@ -13,6 +13,22 @@ import ForgetPassword           from "../components/ForgetPassword";
 import NewPassword              from "../components/NewPassword";
 import ActivtionAccount         from "../components/ActivtionAccount";
 import Details                  from "../components/Details";
+import MapLocation              from "../components/MapLocation";
+import FilterSearch             from "../components/FilterSearch";
+import DetailsChef              from "../components/DetailsChef";
+import Notification             from "../components/Notification";
+import Cart                     from "../components/Cart";
+import About                    from "../components/About";
+import Terms                    from "../components/Terms";
+import Faq                      from "../components/Faq";
+import Offers                   from "../components/Offers";
+import Favorite                 from "../components/Favorite";
+import DetailsCart              from "../components/DetailsCart";
+import Payment                  from "../components/Payment";
+import FormPayment              from "../components/FormPayment";
+import ConfirmPayment           from "../components/ConfirmPayment";
+import Profile                  from "../components/Profile";
+import EditProfile              from "../components/EditProfile";
 import InitScreen               from "../components/InitScreen";
 import DrawerCustomization      from "./DrawerCustomization";
 
@@ -21,6 +37,12 @@ const drawerCust = (props) => (<DrawerCustomization {...props} />);
 
 const drawerNavigator = createDrawerNavigator({
     Home                : Home,
+    Offers              : Offers,
+    Favorite            : Favorite,
+    Profile             : Profile,
+    About               : About,
+    Faq                 : Faq,
+    Terms               : Terms,
 },
     {
     initialRouteName    : 'Home',
@@ -34,14 +56,110 @@ const drawerNavigator = createDrawerNavigator({
 });
 
 const AppNavigator = createStackNavigator({
-    drawerNavigator: {
-        screen: drawerNavigator,
+    FormPayment : {
+        screen : FormPayment,
         navigationOptions: {
             header: null
         }
     },
     Register : {
         screen : Register,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Profile : {
+        screen : Profile,
+        navigationOptions: {
+            header: null
+        }
+    },
+    EditProfile : {
+        screen : EditProfile,
+        navigationOptions: {
+            header: null
+        }
+    },
+    drawerNavigator: {
+        screen: drawerNavigator,
+        navigationOptions: {
+            header: null
+        }
+    },
+    ConfirmPayment : {
+        screen : ConfirmPayment,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Payment : {
+        screen : Payment,
+        navigationOptions: {
+            header: null
+        }
+    },
+    DetailsCart : {
+        screen : DetailsCart,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Favorite : {
+        screen : Favorite,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Offers : {
+        screen : Offers,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Faq : {
+        screen : Faq,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Terms : {
+        screen : Terms,
+        navigationOptions: {
+            header: null
+        }
+    },
+    About : {
+        screen : About,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Cart : {
+        screen : Cart,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Notification : {
+        screen : Notification,
+        navigationOptions: {
+            header: null
+        }
+    },
+    DetailsChef : {
+        screen : DetailsChef,
+        navigationOptions: {
+            header: null
+        }
+    },
+    FilterSearch : {
+        screen : FilterSearch,
+        navigationOptions: {
+            header: null
+        }
+    },
+    MapLocation : {
+        screen : MapLocation,
         navigationOptions: {
             header: null
         }

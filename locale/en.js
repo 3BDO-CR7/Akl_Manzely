@@ -9,6 +9,7 @@ const en = {
     'doHaveAcc'                         : 'Register',
     'changepass'                        : 'change password',
     'currentpass'                       : 'current password',
+    'curtpass'                          : 'enter current password',
     'newpass'                           : 'new password',
     'confirmpass'                       : 'confirm new password',
     'actcode'                           : 'activation code',
@@ -175,6 +176,12 @@ const en = {
     'searchchef'                        : 'search for chef',
     'rate'                              : 'rating',
     'price'                             : 'enter price',
+    'editchef'                          : 'prepare chef',
+    'datapro'                           : 'data provider',
+    'choose'                            : 'choose',
+    'acNum'                             : 'Account number is required',
+    'chDate'                            : 'End date must be entered',
+    'chCode'                            : 'Confirmation code must be entered',
 
 };
 

@@ -26,6 +26,9 @@ const styles = ({
     text_green : {
         color               : COLORS.green
     },
+    text_black_gray : {
+        color               : COLORS.black_gray
+    },
     text_White : {
         color               : '#FFF'
     },
@@ -52,6 +55,9 @@ const styles = ({
     },
     textSize_12 : {
         fontSize            : 12,
+    },
+    textSize_13 : {
+        fontSize            : 13,
     },
     textSize_14 : {
         fontSize            : 14,
@@ -98,6 +104,9 @@ const styles = ({
 
     // Margin Space Vertical
 
+    marginVertical_0 : {
+        marginVertical      : 0
+    },
     marginVertical_5 : {
         marginVertical      : 5
     },
@@ -264,7 +273,7 @@ const styles = ({
         backgroundColor                 : "rgba(250, 218, 208, 0.9)"
     },
     overlay_white : {
-        backgroundColor                 : "rgba(255, 255, 255, 0.7)"
+        backgroundColor                 : "rgba(255, 255, 255, 0.5)"
     },
     overlay_black : {
         backgroundColor                 : "rgba(0, 0, 0, 0.5)"
@@ -301,19 +310,39 @@ const styles = ({
     },
     border_top : {
         borderTopWidth            : 3,
-        borderColor               : COLORS.red
+        borderTopColor            : COLORS.red
     },
     border_bottom : {
         borderBottomWidth         : 3,
-        borderColor               : COLORS.red
+        borderBottomColor         : COLORS.red
     },
     border_right : {
         borderRightWidth          : 3,
-        borderColor               : COLORS.red
+        borderRightColor          : COLORS.red
     },
     border_left : {
         borderLeftWidth           : 3,
-        borderColor               : COLORS.red
+        borderLeftColor           : COLORS.red
+    },
+    borderRed : {
+        borderLeftWidth           : 4,
+        borderLeftColor           : COLORS.red,
+        borderTopWidth            : 1,
+        borderBottomWidth         : 1,
+        borderRightWidth          : 1,
+        borderTopColor            : COLORS.gray,
+        borderBottomColor         : COLORS.gray,
+        borderRightColor          : COLORS.gray,
+    },
+    borderBlack : {
+        borderLeftWidth           : 4,
+        borderLeftColor           : COLORS.black,
+        borderTopWidth            : 1,
+        borderBottomWidth         : 1,
+        borderRightWidth          : 1,
+        borderTopColor            : COLORS.gray,
+        borderBottomColor         : COLORS.gray,
+        borderRightColor          : COLORS.gray,
     },
 
     // Style Shadow
@@ -338,6 +367,11 @@ const styles = ({
         justifyContent      : 'flex-end',
         alignSelf           : 'center',
     },
+    topCenter : {
+        alignItems          : 'flex-start',
+        justifyContent      : 'flex-start',
+        alignSelf           : 'center',
+    },
     centerContext : {
         alignItems          : 'center',
         justifyContent      : 'center',
@@ -347,11 +381,13 @@ const styles = ({
     },
     SelfRight : {
         alignSelf           : 'flex-end',
-        justifyContent      : 'center',
+        alignItems          : 'center',
+        flexDirection       : "row",
     },
     SelfLeft : {
         alignSelf           : 'flex-start',
-        justifyContent      : 'center',
+        alignItems          : 'center',
+        flexDirection       : "row",
     },
     scroll: {
         flexDirection       : 'row',
@@ -387,8 +423,17 @@ const styles = ({
     bgFullWidth : {
         flexGrow            : 1,
     },
+    flex_1 : {
+        flex                : 1
+    },
+    flex_2 : {
+        flex                : 2
+    },
     flex_10 : {
         flexBasis           : '10%'
+    },
+    flex_15 : {
+        flexBasis           : '15%'
     },
     flex_20 : {
         flexBasis           : '20%'
@@ -414,8 +459,14 @@ const styles = ({
     flex_70 : {
         flexBasis           : '70%'
     },
+    flex_75 : {
+        flexBasis           : '75%'
+    },
     flex_80 : {
         flexBasis           : '80%'
+    },
+    flex_85 : {
+        flexBasis           : '85%'
     },
     flex_90 : {
         flexBasis           : '90%'
@@ -429,6 +480,9 @@ const styles = ({
     Width_45 : {
         width                       : '45%'
     },
+    Width_46 : {
+        width                       : '46%'
+    },
     Width_47 : {
         width                       : '47%'
     },
@@ -440,6 +494,9 @@ const styles = ({
     },
     Width_80 : {
         width                       : '80%'
+    },
+    Width_85 : {
+        width                       : '85%'
     },
     Width_90 : {
         width                       : '90%'
@@ -604,6 +661,9 @@ const styles = ({
     height_50 : {
         height                  : 50
     },
+    height_60 : {
+        height                  : 60
+    },
     height_70 : {
         height                  : 70
     },
@@ -615,6 +675,9 @@ const styles = ({
     },
     height_100 : {
         height                  : 100
+    },
+    height_120 : {
+        height                  : 120
     },
     height_150 : {
         height                  : 150
@@ -687,7 +750,6 @@ const styles = ({
         fontFamily          : 'cairo',
         fontSize            : 15,
         top                 : 0,
-        height              : 180,
     },
     Active : {
         borderWidth           : 1,

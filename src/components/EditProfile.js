@@ -1,47 +1,45 @@
 import React, { Component } from "react";
-import {View, Text, Image, TouchableOpacity, AsyncStorage, KeyboardAvoidingView} from "react-native";
-import {Container, Content, Form, Input, Item, Toast, Icon, CheckBox} from 'native-base'
+import {View, Text, Image, TouchableOpacity} from "react-native";
+import {
+    Container,
+    Content,
+    Header,
+    Button,
+    Left,
+    Body,
+    Title, Right, Icon, Form, Item, Input, CheckBox, Toast,
+} from 'native-base'
 import styles from '../../assets/style';
-import i18n from '../../locale/i18n'
-import * as Animatable from 'react-native-animatable';
-import {NavigationEvents} from "react-navigation";
+import i18n from "../../locale/i18n";
+import {connect} from "react-redux";
+import {chooseLang} from "../actions";
 import Modal from "react-native-modal";
+import {NavigationEvents} from "react-navigation";
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 
-import DateTimePicker from "react-native-modal-datetime-picker";
-
-class Register extends Component {
+class EditProfile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            name                        : '',
-            phone                       : '',
-            birthday                    : '',
+            name                        : 'شعوذه الندم',
+            phone                       : '01001846667',
             qualification               : '',
-            password                    : '',
-            confirmPassword             : '',
-            deviceId                    : '',
-            date                        : '',
-            country                     : i18n.t('choosecity'),
-            countryId                   : null,
-            nationality                 : i18n.t('enternationality'),
-            nationalityId               : null,
+            country                     : 'السنبلاوين',
+            countryId                   : 1,
+            nationality                 : 'ذكر',
+            nationalityId               : 1,
             userId                      : null,
             type                        : 0,
-            nameStatus                  : 0,
-            phoneStatus                 : 0,
-            birthdayStatus              : 0,
-            qualificationStatus         : 0,
-            nationalityStatus           : 0,
-            passwordStatus              : 0,
-            confirmPasswordStatus       : 0,
-            isDatePickerVisible         : false,
+            nameStatus                  : 1,
+            phoneStatus                 : 1,
             spinner                     : false,
-            checkTerms                  : false,
             isModalCountry              : false,
             isModalNationality          : false,
-            cityName                    : i18n.translate('mapname'),
-            latitude                    : null,
-            longitude                   : null
+            cityName                    : 'المنصوره - السنبلاوين - شارع المعيـز',
+            userImage                   : '../../assets/img/girl.png',
+            latitude                    : 11.11,
+            longitude                   : 11.11
         }
     }
 
@@ -53,26 +51,6 @@ class Register extends Component {
 
         if (type === 'phone' || this.state.phone !== '') {
             this.setState({phoneStatus: 1})
-        }
-
-        if (type === 'birthday' || this.state.birthday !== '') {
-            this.setState({birthdayStatus: 1})
-        }
-
-        if (type === 'qualification' || this.state.qualification !== '') {
-            this.setState({qualificationStatus: 1})
-        }
-
-        if (type === 'nationality' || this.state.nationality !== '') {
-            this.setState({nationalityStatus: 1})
-        }
-
-        if (type === 'password' || this.state.password !== '') {
-            this.setState({passwordStatus: 1})
-        }
-
-        if (type === 'confirmPassword' || this.state.confirmPassword !== '') {
-            this.setState({confirmPasswordStatus: 1})
         }
 
     }
@@ -87,26 +65,6 @@ class Register extends Component {
             this.setState({phoneStatus: 0})
         }
 
-        if (type === 'birthday' && this.state.birthday === '') {
-            this.setState({birthdayStatus: 0})
-        }
-
-        if (type === 'qualification' && this.state.qualification === '') {
-            this.setState({qualificationStatus: 0})
-        }
-
-        if (type === 'nationality' && this.state.nationality === '') {
-            this.setState({nationalityStatus: 0})
-        }
-
-        if (type === 'password' && this.state.password === '') {
-            this.setState({passwordStatus: 0})
-        }
-
-        if (type === 'confirmPassword' && this.state.confirmPassword === '') {
-            this.setState({confirmPasswordStatus: 0})
-        }
-
     }
 
     validate = () => {
@@ -119,30 +77,12 @@ class Register extends Component {
         } else if (this.state.phone.length <= 0) {
             isError     = true;
             msg         = i18n.t('namereq');
-        } else if (this.state.date === '' || this.state.date === null) {
-            isError     = true;
-            msg         = i18n.t('enterbirthday');
-        } else if (this.state.qualification.length <= 0) {
-            isError     = true;
-            msg         = i18n.t('enterqualification');
         } else if (this.state.nationalityId === null) {
             isError     = true;
             msg         = i18n.t('enternationality');
-        } else if (this.state.oldPassword.length <= 0){
-            isError     = true;
-            msg         = i18n.translate('newmpass');
-        }else if (this.state.countryId === null){
+        } else if (this.state.countryId === null){
             isError     = true;
             msg         = i18n.translate('choosecity');
-        } else if (this.state.password.length < 6){
-            isError     = true;
-            msg         = i18n.translate('passreq');
-        } else if (this.state.password !== this.state.confirmPassword){
-            isError     = true;
-            msg         = i18n.translate('notmatch');
-        } else if (this.state.checked === false) {
-            isError = true;
-            msg = i18n.translate('aggreTerms');
         }
         if (msg !== '') {
             Toast.show({
@@ -159,26 +99,17 @@ class Register extends Component {
         return isError;
     };
 
-    onLoginPressed() {
+    onEditPressed() {
 
         this.setState({spinner: true});
 
         const err = this.validate();
 
         if (!err){
-            this.props.navigation.navigate('ActivtionAccount');
+            this.props.navigation.navigate('Profile');
         }
 
     }
-
-    toggleDatePicker = () => {
-        this.setState({ isDatePickerVisible: !this.state.isDatePickerVisible });
-    };
-
-    doneDatePicker = date => {
-        let formatted_date = date.getFullYear() + "-" + ("0"+(date.getMonth() + 1)).slice(-2) + "-" + ("0" +date.getDate()).slice(-2);
-        this.setState({ date : formatted_date, isDatePickerVisible: false });
-    };
 
     toggleModalCountry = () => {
         this.setState({ isModalCountry: !this.state.isModalCountry});
@@ -186,7 +117,7 @@ class Register extends Component {
 
     selectCountryId(id, name) {
         this.setState({
-            checked2    : id,
+            checked2     : id,
             country     : name
         });
         this.state.countryId = id;
@@ -199,16 +130,11 @@ class Register extends Component {
 
     selectNationalityId(id, name) {
         this.setState({
-            checked         : id,
+            checked        : id,
             nationality     : name
         });
         this.state.nationalityId = id;
         this.setState({ isModalNationality: !this.state.isModalNationality});
-    }
-
-    async componentWillMount() {
-
-
     }
 
     getLocation(){
@@ -218,6 +144,29 @@ class Register extends Component {
         });
 
     }
+
+    askPermissionsAsync = async () => {
+        await Permissions.askAsync(Permissions.CAMERA);
+        await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+    };
+
+    _pickImage = async () => {
+
+        this.askPermissionsAsync();
+
+        let result = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+            aspect: [4, 3],
+            base64:true
+        });
+
+        console.log(result);
+
+        if (!result.cancelled) {
+            this.setState({ userImage: result.uri ,base64:result.base64});
+        }
+    };
 
     componentWillReceiveProps(nextProps) {
 
@@ -233,27 +182,65 @@ class Register extends Component {
 
     }
 
+    componentWillMount() {
+
+        this.setState({spinner: true});
+
+    }
+
     onFocus(){
         this.componentWillMount();
     }
 
     render() {
 
-        return (
+        let image = this.state.userImage;
 
+        return (
             <Container>
 
                 <NavigationEvents onWillFocus={() => this.onFocus()} />
 
-                <Content contentContainerStyle={styles.bgFullWidth}>
-                    <View style={[styles.position_R, styles.bgFullWidth, styles.marginVertical_15, styles.flexCenter, styles.Width_100]}>
-                        <View style={[styles.overHidden, styles.marginVertical_15]}>
-                            <Animatable.View animation="bounceIn" easing="ease-out" delay={500} style={[styles.flexCenter]}>
-                                <Image style={[styles.icoImage]} source={require('../../assets/img/icon.png')}/>
-                            </Animatable.View>
+                <Header style={styles.headerView}>
+                    <Left style={styles.leftIcon}>
+                        <Button style={styles.Button} transparent onPress={() => this.props.navigation.goBack()}>
+                            <Image style={[styles.headImage]} source={require('../../assets/img/left.png')} resizeMode={'contain'}/>
+                        </Button>
+                    </Left>
+                    <Body style={styles.bodyText}>
+                        <Title style={[styles.textRegular , styles.text_red, styles.textSize_16, styles.textLeft, styles.Width_100, styles.paddingHorizontal_5, styles.paddingVertical_0]}>
+                            { i18n.t('editAcc') }
+                        </Title>
+                    </Body>
+                    <Right style={styles.leftIcon}>
+                        <Button style={styles.Button} transparent onPress={() => this.props.navigation.goBack()}>
+                            <Icon type={'AntDesign'} name={'close'} style={[ styles.text_red, styles.textSize_26 ]}/>
+                        </Button>
+                    </Right>
+                </Header>
+
+                <Content contentContainerStyle={styles.bgFullWidth} style={styles.contentView}>
+
+                    <View style={[ styles.position_A, styles.bg_gray, styles.Width_100, styles.height_70, styles.right_0, styles.top_0, styles.zIndexDown ]}/>
+
+                    <View style={[ styles.position_R, styles.zIndex, styles.bgFullWidth , styles.paddingVertical_10]}>
+
+                        <View style={[ styles.position_R, styles.overHidden,styles.Width_85, styles.height_200, styles.flexCenter ]}>
+                            <View style={[ styles.position_A, styles.top_0, styles.right_0, styles.overlay_black, styles.Width_100, styles.height_full, styles.zIndex ]} />
+                            <TouchableOpacity
+                                style={[styles.width_40, styles.height_40, styles.overlay_white, styles.flexCenter, styles.position_A, styles.left_0, styles.top_20, styles.zIndex]}
+                                onPress={this._pickImage}
+                            >
+                                <Icon style={[styles.text_White, styles.textSize_20]} type="AntDesign" name='plus' />
+                            </TouchableOpacity>
+                            <View style={[ styles.overHidden,styles.Width_100, styles.height_200, styles.flexCenter, styles.position_R]}>
+                                <Image style={[styles.Width_100, styles.height_200]} source={{ uri: image }} resizeMode={'cover'}/>
+                            </View>
                         </View>
-                        <KeyboardAvoidingView behavior={'padding'}>
-                            <Form style={[styles.flexCenter, styles.marginVertical_10, styles.Width_90]}>
+
+                        <View style={[ styles.marginVertical_10, styles.Width_85, styles.flexCenter ]}>
+
+                            <Form style={[styles.flexCenter, styles.marginVertical_10, styles.Width_100]}>
 
                                 <View style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}>
                                     <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}>
@@ -262,7 +249,8 @@ class Register extends Component {
                                             style={[styles.input, styles.height_50, (this.state.nameStatus === 1 ? styles.Active : styles.noActive)]}
                                             onChangeText={(name) => this.setState({name})}
                                             onBlur={() => this.unActiveInput('name')}
-                                            onFocus={() => this.activeInput('name')}
+                                            onFocus= {() => this.activeInput('name')}
+                                            value= {this.state.name}
                                         />
                                     </Item>
                                 </View>
@@ -276,26 +264,10 @@ class Register extends Component {
                                             onBlur={() => this.unActiveInput('phone')}
                                             onFocus={() => this.activeInput('phone')}
                                             keyboardType={'number-pad'}
+                                            value= {this.state.phone}
                                         />
                                     </Item>
                                 </View>
-
-                                <View style={[styles.overHidden, styles.rowGroup]}>
-                                    <TouchableOpacity onPress={this.toggleDatePicker} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, (this.state.date !== '' ? styles.border_red :  styles.border_gray )]}>
-                                        <Text style={[styles.textRegular, styles.textSize_14, (this.state.date !== '' ? styles.text_red :  styles.text_black )]}>
-                                            {i18n.translate('birthday')} : {this.state.date}
-                                        </Text>
-                                        <Icon style={[styles.textSize_20, styles.text_light_gray]} type="AntDesign" name='calendar' />
-                                    </TouchableOpacity>
-                                </View>
-
-                                <DateTimePicker
-                                    isVisible       = {this.state.isDatePickerVisible}
-                                    onConfirm       = {this.doneDatePicker}
-                                    onCancel        = {this.toggleDatePicker}
-                                    mode            = {'date'}
-                                    minimumDate     = {new Date()}
-                                />
 
                                 <View style={[styles.overHidden, styles.rowGroup]}>
                                     <TouchableOpacity onPress={() => this.toggleModalNationality()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, (this.state.nationalityId !== null ? styles.border_red :  styles.border_gray )]}>
@@ -428,18 +400,6 @@ class Register extends Component {
                                     </View>
                                 </Modal>
 
-                                <View style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}>
-                                    <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}>
-                                        <Input
-                                            placeholder={i18n.translate('qualification')}
-                                            style={[styles.input, styles.height_50, (this.state.qualificationStatus === 1 ? styles.Active : styles.noActive)]}
-                                            onChangeText={(qualification) => this.setState({qualification})}
-                                            onBlur={() => this.unActiveInput('qualification')}
-                                            onFocus={() => this.activeInput('qualification')}
-                                        />
-                                    </Item>
-                                </View>
-
                                 <View style={[styles.overHidden, styles.rowGroup]}>
                                     <TouchableOpacity
                                         style       = {[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, (this.state.latitude !== null ||  this.state.longitude !== null ? styles.border_red : styles.border_gray)]}
@@ -452,74 +412,21 @@ class Register extends Component {
                                     </TouchableOpacity>
                                 </View>
 
-                                <View style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}>
-                                    <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}>
-                                        <Input
-                                            placeholder={i18n.translate('password')}
-                                            style={[styles.input, styles.height_50, (this.state.passwordStatus === 1 ? styles.Active : styles.noActive)]}
-                                            onChangeText={(password) => this.setState({password})}
-                                            onBlur={() => this.unActiveInput('password')}
-                                            onFocus={() => this.activeInput('password')}
-                                            secureTextEntry
-                                        />
-                                    </Item>
-                                </View>
 
-                                <View
-                                    style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}>
-                                    <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}>
-                                        <Input
-                                            placeholder={i18n.translate('confirmPassword')}
-                                            style={[styles.input, styles.height_50, (this.state.confirmPasswordStatus === 1 ? styles.Active : styles.noActive)]}
-                                            onChangeText={(confirmPassword) => this.setState({confirmPassword})}
-                                            onBlur={() => this.unActiveInput('confirmPassword')}
-                                            onFocus={() => this.activeInput('confirmPassword')}
-                                            secureTextEntry
-                                        />
-                                    </Item>
-                                </View>
+                            <TouchableOpacity
+                                style       = {[ styles.marginVertical_25 , styles.width_150, styles.paddingHorizontal_10, styles.paddingVertical_10 , styles.flexCenter, styles.bg_red,]}
+                                onPress     = {() => this.onEditPressed()}
+                            >
+                                <Text style={[styles.textRegular, styles.textSize_13, styles.text_White]}>
+                                    { i18n.t('confirm') }
+                                </Text>
+                            </TouchableOpacity>
 
-                                <View style={[styles.rowRight, styles.marginVertical_20]}>
-                                    <TouchableOpacity style={[styles.rowRight, styles.marginVertical_10]}>
-                                        <CheckBox
-                                            style={[styles.checkBox, styles.Border, styles.bg_red, styles.Border, styles.border_red]}
-                                            color={styles.text_gray}
-                                            selectedColor={styles.text_White}
-                                            onPress={() => this.setState({checkTerms: !this.state.checkTerms})}
-                                            checked={this.state.checkTerms}
-                                        />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Terms')}>
-                                        <Text
-                                            style={[styles.textRegular, styles.text_black, styles.textSize_14, styles.paddingHorizontal_15, styles.textDecoration]}>
-                                            {i18n.t('agreTe')}
-                                        </Text>
-                                    </TouchableOpacity>
-                                </View>
+                        </Form>
 
-                                <TouchableOpacity
-                                    style={[styles.bg_red, styles.width_150, styles.flexCenter, styles.marginVertical_15, styles.height_40]}
-                                    onPress={() => this.onLoginPressed()}>
-                                    <Text style={[styles.textRegular, styles.textSize_14, styles.text_White]}>
-                                        {i18n.translate('doHaveAcc')}
-                                    </Text>
-                                </TouchableOpacity>
-
-                            </Form>
-                        </KeyboardAvoidingView>
-                        <TouchableOpacity
-                            onPress         = {() => this.props.navigation.navigate('Login')}
-                            style           = {[styles.marginVertical_10, styles.flexCenter, styles.zIndex]}>
-                            <Text style     = {[styles.textRegular, styles.textSize_14, styles.text_red]}>
-                                {i18n.translate('login')}
-                            </Text>
-                        </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={[styles.shape_logo, styles.position_A, styles.fixItem, styles.zIndexDown]}>
-                        <Animatable.View animation="fadeIn" easing="ease-out" delay={500}>
-                            <Image style={[styles.shape_logo]} source={require('../../assets/img/shape.png')}/>
-                        </Animatable.View>
-                    </View>
+
                 </Content>
 
             </Container>
@@ -528,14 +435,13 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default EditProfile;
 
 // const mapStateToProps = ({ auth, profile, lang }) => {
 //     return {
-//         loading     : auth.loading,
-//         auth        : auth.user,
-//         user        : profile.user,
-//         lang        : lang.lang
+//         auth: auth.user,
+//         user: profile.user,
+//         lang: lang.lang
 //     };
 // };
-// export default connect(mapStateToProps, {  })(Login);
+// export default connect(mapStateToProps, {})(Home);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {View, Text, Image, TouchableOpacity, ScrollView, FlatList, KeyboardAvoidingView} from "react-native";
+import {View, Text, Image, TouchableOpacity, ScrollView, FlatList, KeyboardAvoidingView, Share} from "react-native";
 import {
     Container,
     Content,
@@ -13,7 +13,7 @@ import {
     Item,
     Input,
     Title,
-    CheckBox, Form
+    CheckBox, Form, Textarea
 } from 'native-base'
 import styles from '../../assets/style';
 import i18n from "../../locale/i18n";
@@ -35,7 +35,9 @@ class Details extends Component {
             isModalFilter           : false,
             isModalRate             : false,
             isModalSallery          : false,
+            isModalComment          : false,
             active                  : 1,
+            count                   : 0,
             projects                : '',
             projects_string         : '',
             totalCases              : '',
@@ -46,8 +48,9 @@ class Details extends Component {
             Sallery                 : i18n.t('price'),
             SalleryId               : null,
             checked                 : '',
-            checked2                : ''
-
+            checked2                : '',
+            cityName                : i18n.translate('mapname'),
+            value2                  : 1,
         }
     }
 
@@ -64,6 +67,30 @@ class Details extends Component {
         if (type === 'phone' && this.state.phone === '') {
             this.setState({phoneStatus: 0})
         }
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+        if( nextProps.navigation.state.params !== undefined ||  nextProps.navigation.state.params  !== undefined){
+            this.state.cityName             = nextProps.navigation.state.params.city_name;
+            this.setState({latitude   : nextProps.navigation.state.params.latitude});
+            this.setState({longitude  : nextProps.navigation.state.params.longitude});
+        }else{
+            this.setState({cityName  : i18n.translate('mapname')});
+        }
+
+        this.setState({ isModalFilter   : !this.state.isModalFilter});
+
+    }
+
+    getLocation(){
+
+        this.props.navigation.navigate('MapLocation', {
+            pageName : this.props.navigation.state.routeName
+        });
+
+        this.setState({ isModalFilter   : !this.state.isModalFilter});
 
     }
 
@@ -107,6 +134,48 @@ class Details extends Component {
         this.setState({ isModalFilter   : !this.state.isModalFilter});
     }
 
+    incrementCount(){
+        this.setState({count: this.state.count + 1});
+    }
+    decrementCount(){
+        this.setState({count: this.state.count - 1});
+    }
+
+    toggleModalComment = () => {
+        this.setState({ isModalComment  : !this.state.isModalComment});
+    };
+
+    increment2() {
+        if (this.state.value2 < 5)
+            this.setState({value2: this.state.value2 + 1})
+    }
+
+    decrement2() {
+        if (this.state.value2 > 1)
+            this.setState({value2: this.state.value2 - 1})
+    }
+
+    onShare = async () => {
+        try {
+            const result = await Share.share({
+                message:
+                    'React Native | A framework for building native apps using React',
+            });
+
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                    // shared with activity type of result.activityType
+                } else {
+                    // shared
+                }
+            } else if (result.action === Share.dismissedAction) {
+                // dismissed
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+
     componentWillMount() {
 
         this.setState({spinner: true});
@@ -141,8 +210,8 @@ class Details extends Component {
 
                 <Header style={styles.headerView}>
                     <Left style={styles.leftIcon}>
-                        <Button style={styles.Button} transparent onPress={() => { this.props.navigation.openDrawer()} }>
-                            <Image style={[styles.headImage]} source={require('../../assets/img/menu.png')} resizeMode={'contain'}/>
+                        <Button style={styles.Button} transparent onPress={() => this.props.navigation.goBack()}>
+                            <Image style={[styles.headImage]} source={require('../../assets/img/left.png')} resizeMode={'contain'}/>
                         </Button>
                     </Left>
                     <Body style={styles.bodyText}>
@@ -152,13 +221,14 @@ class Details extends Component {
                                     placeholder={i18n.translate('searchCat')}
                                     style={[styles.input, styles.height_40, styles.BorderNone, styles.paddingRight_5, styles.paddingLeft_5 ,styles.textSize_14,styles.text_red, {backgroundColor : "#dcd8d8"}]}
                                     autoCapitalize='none'
+                                    placeholderTextColor='#d8999a'
                                     onChangeText={(categorySearch) => this.setState({categorySearch})}
                                 />
                             </Item>
                             <TouchableOpacity
                                 style={[styles.position_A, styles.right_0, styles.width_50, styles.height_40, styles.flexCenter]}
                                 onPress={() => this.onSearch()}>
-                                <Image style={[styles.headImage]} source={require('../../assets/img/share.png')} resizeMode={'contain'}/>
+                                <Image style={[styles.headImage]} source={require('../../assets/img/search.png')} resizeMode={'contain'}/>
                             </TouchableOpacity>
                         </View>
                         {/*<Title style={[styles.textRegular , styles.text_red, styles.textSize_16, styles.textLeft, styles.Width_100, styles.paddingHorizontal_5, styles.paddingVertical_0]}>*/}
@@ -169,18 +239,17 @@ class Details extends Component {
                         <Button style={styles.Button} transparent onPress={() => this.toggleModalFilter()}>
                             <Image style={[styles.headImage]} source={require('../../assets/img/controls.png')} resizeMode={'contain'}/>
                         </Button>
-                        <Button style={styles.Button} transparent>
-                            <Image style={[styles.headImage]} source={require('../../assets/img/alarm.png')} resizeMode={'contain'}/>
+                        <Button style={styles.Button} transparent onPress={()=> this.onShare()} >
+                            <Image style={[styles.headImage]} source={require('../../assets/img/share.png')} resizeMode={'contain'}/>
                         </Button>
                     </Right>
                 </Header>
 
                 <Content contentContainerStyle={styles.bgFullWidth} style={styles.contentView}>
 
-                    {/*<View style={[ styles.position_A, styles.bg_gray, styles.Width_100, styles.height_70, styles.right_0, styles.top_0 ]}/>*/}
+                    <View style={[ styles.position_A, styles.bg_gray, styles.Width_100, styles.height_70, styles.right_0, styles.top_0 ]}/>
 
                     <View style={[ styles.boxUser ]}>
-
 
                         <Modal isVisible={this.state.isModalFilter} onBackdropPress={() => this.toggleModalFilter()} style={[ styles.bottomCenter, styles.Width_100 ]}>
                             <View style={[styles.overHidden, styles.bg_White, styles.flexCenter , styles.Width_100, styles.position_R, styles.top_20]}>
@@ -225,13 +294,24 @@ class Details extends Component {
                                         </View>
 
                                         <View style={[styles.overHidden, styles.rowGroup]}>
-                                            <TouchableOpacity style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}>
-                                                <Text style={[styles.textRegular, styles.textSize_14, styles.text_black]}>
-                                                    {i18n.translate('mapname')}
+                                            <TouchableOpacity
+                                                style       = {[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}
+                                                onPress     = {() => this.getLocation()}
+                                            >
+                                                <Text style={[styles.textRegular, styles.textSize_14, styles.text_black, styles.width_150]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
+                                                    {this.state.cityName}
                                                 </Text>
                                                 <Icon style={[styles.textSize_20, styles.text_light_gray]} type="Feather" name='map-pin' />
                                             </TouchableOpacity>
                                         </View>
+
+                                        <TouchableOpacity
+                                            style       = {[styles.bg_red, styles.width_150, styles.flexCenter, styles.marginVertical_15, styles.height_40]}
+                                            onPress     = {() => this.props.navigation.navigate('Home')}>
+                                            <Text style={[styles.textRegular, styles.textSize_14, styles.text_White]}>
+                                                {i18n.translate('search')}
+                                            </Text>
+                                        </TouchableOpacity>
 
                                     </Form>
 
@@ -336,10 +416,14 @@ class Details extends Component {
                             </View>
                         </Modal>
 
-                        <View style={styles.viewBlock}>
-
+                        <View style={[ styles.position_R, styles.overHidden ]}>
+                            <Animatable.View animation="fadeIn" easing="ease-out" delay={500} style = {[styles.width_40 , styles.height_40, styles.position_A, styles.top_15, styles.right_35, styles.zIndex, styles.overlay_black]}>
+                                <TouchableOpacity style = {[ styles.width_40 , styles.height_40, styles.flexCenter ]}>
+                                    <Icon style = {[styles.text_red, styles.textSize_18]} type="AntDesign" name='heart' />
+                                </TouchableOpacity>
+                            </Animatable.View>
                             <Swiper
-                                containerStyle      = {[styles.Width_95, styles.marginVertical_15, styles.swiper, styles.viewBlock]}
+                                containerStyle      = {[styles.Width_95, styles.marginVertical_15, styles.height_120, styles.viewBlock]}
                                 autoplay            = {true}
                                 paginationStyle     = {[styles.paginationStyle]}
                                 dotStyle            = {{borderRadius : 0, height : 10, width: 4, backgroundColor: '#DDD'}}
@@ -349,7 +433,7 @@ class Details extends Component {
                                 autoplayTimeout     = { 2 }>
 
                                 <View style={[styles.viewBlock]}>
-                                    <Image style={[styles.Width_95, styles.swiper]} source={require('../../assets/img/4.png')}/>
+                                    <Image style={[styles.Width_95, styles.height_120]} source={require('../../assets/img/4.png')}/>
                                     <Animatable.View animation="fadeInRight" easing="ease-out" delay={500} style={[ styles.position_A , styles.left_0, styles.bottom_0 , styles.Width_95, styles.overlay_black]}>
                                         <View style={[styles.paddingVertical_10, styles.paddingHorizontal_10]}>
                                             <Text style={[styles.textRegular, styles.text_White, styles.Width_100 ,styles.textSize_12, styles.textLeft]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
@@ -360,7 +444,7 @@ class Details extends Component {
                                 </View>
 
                                 <View style={[styles.viewBlock]}>
-                                    <Image style={[styles.Width_95, styles.swiper]} source={require('../../assets/img/2.png')}/>
+                                    <Image style={[styles.Width_95, styles.height_120]} source={require('../../assets/img/2.png')}/>
                                     <Animatable.View animation="fadeInRight" easing="ease-out" delay={500} style={[ styles.position_A , styles.left_0, styles.bottom_0 , styles.Width_95, styles.overlay_black]}>
                                         <View style={[styles.paddingVertical_10, styles.paddingHorizontal_10]}>
                                             <Text style={[styles.textRegular, styles.text_White, styles.Width_100 ,styles.textSize_12, styles.textLeft]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
@@ -374,7 +458,7 @@ class Details extends Component {
 
                         </View>
 
-                        <View style={[ styles.height_40 ]}>
+                        <View style={[ styles.height_40, styles.paddingHorizontal_10 ]}>
                             <ScrollView style={[ styles.scroll ]} horizontal={true} showsHorizontalScrollIndicator={false}>
 
                                 <TouchableOpacity
@@ -400,6 +484,99 @@ class Details extends Component {
                                 </TouchableOpacity>
 
                             </ScrollView>
+                        </View>
+
+                        <View style={[ styles.Border, styles.border_gray, styles.paddingHorizontal_5, styles.paddingVertical_10, styles.marginVertical_10, styles.overHidden, styles.marginHorizontal_15 ]}>
+
+                            <View style={[ styles.rowGroup,  ]}>
+                                <View style={[ styles.rowGroup ]}>
+                                    <Text style={[styles.textRegular, styles.text_black_gray, styles.textSize_13]}>
+                                        {i18n.t('editchef')} :
+                                    </Text>
+                                    <Text style={[styles.textRegular, styles.text_red, styles.textSize_13, styles.marginHorizontal_5]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
+                                        شعوذه الندم
+                                    </Text>
+                                </View>
+                                <View style={[ styles.rowGroup ]}>
+                                    <Text style={[styles.textRegular, styles.text_black_gray, styles.textSize_13]}>
+                                        {i18n.t('monyproducer')}
+                                    </Text>
+                                    <Text style = {[styles.textRegular, styles.text_black, styles.textSize_12, styles.border_right, styles.paddingHorizontal_10, styles.marginHorizontal_5]}>
+                                        10 ر.س
+                                    </Text>
+                                </View>
+                                <View style={[ styles.rowGroup ]}>
+                                    <Icon
+                                        style   = {[styles.text_green, styles.textSize_5, styles.marginHorizontal_5]}
+                                        type    = "FontAwesome"
+                                        name    = 'circle'
+                                    />
+                                    <Text style={[styles.textRegular, styles.text_green, styles.textSize_12]}>
+                                        متواجد حاليا
+                                    </Text>
+                                </View>
+                            </View>
+
+                            <View style={[ styles.rowGroup, styles.marginVertical_5 ]}>
+                                <View style={[ styles.width_50, styles.height_50, styles.flex_15 ]}>
+                                    <Image style = {[styles.Width_100 , styles.height_full]} source={require('../../assets/img/girl.png')}/>
+                                </View>
+                                <View style={[ styles.paddingHorizontal_5, styles.flex_85 ]}>
+                                    <View style={[ styles.rowGroup ]}>
+                                        <Text style={[styles.textRegular, styles.text_red, styles.textSize_12]}>{i18n.t('editchef')}</Text>
+                                        <Text style={[styles.textRegular, styles.text_black_gray, styles.textSize_10]}>استلام من الشيف / علي حسب المسافه</Text>
+                                    </View>
+                                    <View style={[ styles.rowGroup ]}>
+                                        <Text style={[styles.textRegular, styles.text_red, styles.textSize_12]}>{i18n.t('eat')}</Text>
+                                        <Text style={[styles.textRegular, styles.text_black_gray, styles.textSize_10]}>طماطم - بطاطس - خس - جبنة</Text>
+                                    </View>
+                                    <View style={[ styles.rowGroup ]}>
+                                        <Text style={[styles.textRegular, styles.text_red, styles.textSize_12]}>{i18n.t('timeeat')}</Text>
+                                        <Text style={[styles.textRegular, styles.text_black_gray, styles.textSize_10]}>علي حسب التواجد / قبلها بـ 2 ساعة</Text>
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View>
+                                <Text style={[styles.textRegular, styles.text_black, styles.textSize_12, styles.rowLeft]}>
+                                    يبعد 200.2 KM
+                                </Text>
+                            </View>
+
+                            <View style={[ styles.rowGroup ]}>
+
+                                <TouchableOpacity style={[styles.bg_red, styles.width_150, styles.flexCenter, styles.marginVertical_5, styles.height_40]}>
+                                    <Text style={[styles.textRegular, styles.text_White, styles.textSize_13]}>{i18n.t('addToCart')}</Text>
+                                </TouchableOpacity>
+
+                                <View style={[ styles.rowGroup ]}>
+                                    <TouchableOpacity
+                                        style       = {[styles.bg_light_red,styles.flexCenter, styles.paddingVertical_5, styles.paddingHorizontal_5]}
+                                        onPress     = {() => this.incrementCount()}
+                                    >
+                                        <Icon
+                                            style   = {[styles.text_red, styles.textSize_14]}
+                                            type    = "AntDesign"
+                                            name    = 'plus'
+                                        />
+                                    </TouchableOpacity>
+                                    <Text style={[styles.textRegular, styles.text_red, styles.textSize_13, styles.Border, styles.border_light_red, styles.width_40, styles.textCenter, styles.marginHorizontal_5]}>
+                                        { this.state.count }
+                                    </Text>
+                                    <TouchableOpacity
+                                        style       = {[styles.bg_light_gray, styles.flexCenter, styles.paddingVertical_5, styles.paddingHorizontal_5]}
+                                        onPress     = {() => this.decrementCount()}
+                                    >
+                                        <Icon
+                                            style   = {[styles.text_White, styles.textSize_14]}
+                                            type    = "AntDesign"
+                                            name    = 'minus'
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+
+                            </View>
+
                         </View>
 
                         {/*<FlatList*/}
@@ -606,6 +783,179 @@ class Details extends Component {
                             </View>
 
                         </View>
+
+                        <View style={[ styles.position_R, styles.marginHorizontal_20, styles.marginVertical_10 ]}>
+
+                            <View style={[ styles.position_A, styles.shapeBlock, styles.Border, styles.border_gray, styles.Width_100, styles.height_full ]} />
+
+                            <View style={[ styles.Border, styles.border_gray, styles.paddingHorizontal_5, styles.paddingVertical_5, styles.bg_White ]}>
+                                <View style={[ styles.rowGroup ]}>
+                                    <View style={[ styles.rowGroup ]}>
+                                        <Text style={[styles.textBold, styles.text_black, styles.textSize_13]}>
+                                            {i18n.t('comments')} :
+                                        </Text>
+                                        <Text style={[styles.textRegular, styles.text_black_gray, styles.textSize_13, styles.marginHorizontal_5]}>
+                                            ( 44 )
+                                        </Text>
+                                    </View>
+                                    <TouchableOpacity style={[ styles.rowGroup ]} onPress={() => this.toggleModalComment()}>
+                                        <Text style={[styles.textRegular, styles.text_red, styles.textSize_13, styles.marginHorizontal_5]}>
+                                            {i18n.t('addComment')}
+                                        </Text>
+                                        <View style={[ styles.paddingHorizontal_5, styles.paddingVertical_5 , styles.flexCenter, styles.bg_light_red ]}>
+                                            <Icon
+                                                style   = {[styles.text_red, styles.textSize_20]}
+                                                type    = "AntDesign"
+                                                name    = 'plus'
+                                            />
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={[ styles.rowGroup, styles.marginVertical_10 ]}>
+                                    <View style={[ styles.flex_15, styles.overHidden, styles.flexCenter ]}>
+                                        <Image style = {[styles.width_40 , styles.height_40, styles.Border, styles.border_red, styles.Radius_100]} source={require('../../assets/img/girl.png')}/>
+                                    </View>
+                                    <View style={[ styles.flex_85 ]}>
+                                        <View style={[ styles.rowGroup ]}>
+                                            <Text style={[styles.textRegular, styles.text_light_gray, styles.textSize_13]}>
+                                                شعوذه الندم
+                                            </Text>
+                                            <StarRating
+                                            disabled        = {true}
+                                            maxStars        = {5}
+                                            rating          = {3}
+                                            fullStarColor   = {COLORS.red}
+                                            starSize        = {12}
+                                            starStyle       = {styles.starStyle}
+                                            />
+                                        </View>
+                                        <Text style={[styles.textRegular, styles.text_black, styles.textSize_13]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
+                                            حبيبي عمر عذابك ف الآخره
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={[ styles.rowGroup, styles.marginVertical_10 ]}>
+                                    <View style={[ styles.flex_15, styles.overHidden, styles.flexCenter ]}>
+                                        <Image style = {[styles.width_40 , styles.height_40, styles.Border, styles.border_red, styles.Radius_100]} source={require('../../assets/img/girl.png')}/>
+                                    </View>
+                                    <View style={[ styles.flex_85 ]}>
+                                        <View style={[ styles.rowGroup]}>
+                                            <Text style={[styles.textRegular, styles.text_light_gray, styles.textSize_13]}>
+                                                شعوذه الندم
+                                            </Text>
+                                            <StarRating
+                                                disabled        = {true}
+                                                maxStars        = {5}
+                                                rating          = {3}
+                                                fullStarColor   = {COLORS.red}
+                                                starSize        = {12}
+                                                starStyle       = {styles.starStyle}
+                                            />
+                                        </View>
+                                        <Text style={[styles.textRegular, styles.text_black, styles.textSize_13]}>
+                                            حبيبي عمر عذابك ف الآخره
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={[ styles.rowGroup, styles.marginVertical_10 ]}>
+                                    <View style={[ styles.flex_15, styles.overHidden, styles.flexCenter ]}>
+                                        <Image style = {[styles.width_40 , styles.height_40, styles.Border, styles.border_red, styles.Radius_100]} source={require('../../assets/img/girl.png')}/>
+                                    </View>
+                                    <View style={[ styles.flex_85 ]}>
+                                        <View style={[ styles.rowGroup]}>
+                                            <Text style={[styles.textRegular, styles.text_light_gray, styles.textSize_13]}>
+                                                شعوذه الندم
+                                            </Text>
+                                            <StarRating
+                                                disabled        = {true}
+                                                maxStars        = {5}
+                                                rating          = {3}
+                                                fullStarColor   = {COLORS.red}
+                                                starSize        = {12}
+                                                starStyle       = {styles.starStyle}
+                                            />
+                                        </View>
+                                        <Text style={[styles.textRegular, styles.text_black, styles.textSize_13]}>
+                                            حبيبي عمر عذابك ف الآخره
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={[ styles.rowGroup, styles.marginVertical_10 ]}>
+                                    <View style={[ styles.flex_15, styles.overHidden, styles.flexCenter ]}>
+                                        <Image style = {[styles.width_40 , styles.height_40, styles.Border, styles.border_red, styles.Radius_100]} source={require('../../assets/img/girl.png')}/>
+                                    </View>
+                                    <View style={[ styles.flex_85 ]}>
+                                        <View style={[ styles.rowGroup]}>
+                                            <Text style={[styles.textRegular, styles.text_light_gray, styles.textSize_13]}>
+                                                شعوذه الندم
+                                            </Text>
+                                            <StarRating
+                                                disabled        = {true}
+                                                maxStars        = {5}
+                                                rating          = {3}
+                                                fullStarColor   = {COLORS.red}
+                                                starSize        = {12}
+                                                starStyle       = {styles.starStyle}
+                                            />
+                                        </View>
+                                        <Text style={[styles.textRegular, styles.text_black, styles.textSize_13]}>
+                                            حبيبي عمر عذابك ف الآخره
+                                        </Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+
+                        <Modal isVisible={this.state.isModalComment} onBackdropPress={() => this.toggleModalComment()} style={[ styles.bottomCenter, styles.Width_100 ]}>
+                            <View style={[styles.overHidden, styles.bg_White , styles.Width_100, styles.position_R, styles.top_20]}>
+
+                                <View style={[styles.paddingVertical_15]}>
+                                    <Text style={[styles.textBold, styles.text_black, styles.textSize_16, styles.textLeft , styles.SelfCenter]}>
+                                        {i18n.t('comment')}
+                                    </Text>
+                                </View>
+
+                                <View style={[styles.paddingHorizontal_10, styles.marginVertical_10]}>
+
+                                    <Form style={[styles.Width_100, styles.flexCenter, styles.marginVertical_10, styles.Width_90]}>
+
+                                        <View style={[styles.rowGroup, styles.Width_100]}>
+                                            <View style={[styles.position_R, styles.flex_1, styles.paddingHorizontal_10, styles.height_100]}>
+                                                <View style={[ styles.position_A, styles.shapeBlock, styles.Border, styles.border_gray, styles.Width_100, styles.height_full ]} />
+                                                <Textarea
+                                                    placeholder         = {i18n.t('addComment')}
+                                                    onChangeText        = {(comment) => this.setState({comment})}
+                                                    style               = {[styles.textArea, styles.height_100, styles.paddingVertical_10, styles.bg_White, styles.Border, styles.border_gray]}
+                                                />
+                                            </View>
+                                            <View>
+                                                <TouchableOpacity onPress={() => this.increment2()} style={[ styles.bg_light_red, styles.paddingHorizontal_5, styles.paddingVertical_5, styles.flexCenter, styles.marginVertical_5 ]}>
+                                                    <Icon type={'Entypo'} name={'plus'} style={[ styles.text_red, styles.textSize_14 ]}/>
+                                                </TouchableOpacity>
+                                                <View style={[styles.Border, styles.border_red, styles.paddingHorizontal_5, styles.paddingVertical_5]}>
+                                                    <Text style={[styles.text_red, styles.textRegular, styles.textSize_14]}>{this.state.value2}</Text>
+                                                    <Icon style={[styles.text_red, styles.textSize_14]} type="AntDesign" name='star'/>
+                                                </View>
+                                                <TouchableOpacity onPress={() => this.decrement2()} style={[ styles.bg_light_gray, styles.paddingHorizontal_5, styles.paddingVertical_5, styles.flexCenter, styles.marginVertical_5 ]}>
+                                                    <Icon type={'Entypo'} name={'minus'} style={[ styles.text_White, styles.textSize_14 ]}/>
+                                                </TouchableOpacity>
+                                            </View>
+                                        </View>
+
+                                        <TouchableOpacity
+                                            style       = {[styles.bg_red, styles.width_150, styles.flexCenter, styles.marginVertical_15, styles.height_40]}
+                                            onPress     = {() => this.toggleModalComment()}>
+                                            <Text style={[styles.textRegular, styles.textSize_14, styles.text_White]}>
+                                                {i18n.translate('addComment')}
+                                            </Text>
+                                        </TouchableOpacity>
+
+                                    </Form>
+
+                                </View>
+
+                            </View>
+                        </Modal>
 
                     </View>
 

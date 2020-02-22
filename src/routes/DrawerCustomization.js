@@ -18,11 +18,11 @@ class DrawerCustomization extends Component {
     }
 
     filterItems(item){
-        if (this.props.user == null)
-            return item.routeName !== 'profile' && item.routeName !== 'Offers' && item.routeName !== 'MyOrders' && item.routeName !== 'Favorite';
-        else if(this.props.user.type === 'delegate' || this.props.user.type === 'provider' )
-            return  item.routeName !== 'Offers' && item.routeName !== 'Favorite' ;
-        else if(this.props.user.type === 'user' )
+        // if (this.props.user == null)
+        //     return item.routeName !== 'profile' && item.routeName !== 'Offers' && item.routeName !== 'MyOrders' && item.routeName !== 'Favorite';
+        // else if(this.props.user.type === 'delegate' || this.props.user.type === 'provider' )
+        //     return  item.routeName !== 'Offers' && item.routeName !== 'Favorite' ;
+        // else if(this.props.user.type === 'user' )
             return  item ;
     }
 
@@ -86,7 +86,7 @@ class DrawerCustomization extends Component {
                                  }
                              }
 
-                             items={this.returnItems()}
+                             items                          = {this.returnItems()}
                              activeBackgroundColor          = {styles.bg_red}
                              inactiveBackgroundColor        = 'transparent'
                              activeLabelStyle               = {COLORS.red}

@@ -46,8 +46,8 @@ class Home extends Component {
             Sallery                 : i18n.t('price'),
             SalleryId               : null,
             checked                 : '',
-            checked2                : ''
-
+            checked2                : '',
+            cityName                : i18n.translate('mapname'),
         }
     }
 
@@ -67,6 +67,37 @@ class Home extends Component {
 
     }
 
+    componentWillReceiveProps(nextProps) {
+
+        if( nextProps.navigation.state.params !== undefined ||  nextProps.navigation.state.params  !== undefined){
+            this.state.cityName             = nextProps.navigation.state.params.city_name;
+            this.setState({latitude   : nextProps.navigation.state.params.latitude});
+            this.setState({longitude  : nextProps.navigation.state.params.longitude});
+        }else{
+            this.setState({cityName  : i18n.translate('mapname')});
+        }
+
+        this.setState({ isModalFilter   : !this.state.isModalFilter});
+
+    }
+
+    getLocation(){
+
+        this.props.navigation.navigate('MapLocation', {
+            pageName : this.props.navigation.state.routeName
+        });
+
+        this.setState({ isModalFilter   : !this.state.isModalFilter});
+
+    }
+
+    onSearch(){
+
+        this.props.navigation.navigate('FilterSearch', {
+            pageName : this.props.navigation.state.routeName
+        });
+
+    }
     onSubCategories ( id ){
         this.setState({spinner: true, active : id });
     }
@@ -152,6 +183,7 @@ class Home extends Component {
                                     placeholder={i18n.translate('searchCat')}
                                     style={[styles.input, styles.height_40, styles.BorderNone, styles.paddingRight_5, styles.paddingLeft_5 ,styles.textSize_14,styles.text_red, {backgroundColor : "#dcd8d8"}]}
                                     autoCapitalize='none'
+                                    placeholderTextColor="#d8999a"
                                     onChangeText={(categorySearch) => this.setState({categorySearch})}
                                 />
                             </Item>
@@ -169,10 +201,10 @@ class Home extends Component {
                         <Button style={styles.Button} transparent onPress={() => this.toggleModalFilter()}>
                             <Image style={[styles.headImage]} source={require('../../assets/img/controls.png')} resizeMode={'contain'}/>
                         </Button>
-                        <Button style={styles.Button} transparent>
+                        <Button style={styles.Button} transparent onPress = {() => this.props.navigation.navigate('Notification')}>
                             <Image style={[styles.headImage]} source={require('../../assets/img/alarm.png')} resizeMode={'contain'}/>
                         </Button>
-                        <Button style={styles.Button} transparent>
+                        <Button style={styles.Button} transparent onPress = {() => this.props.navigation.navigate('Cart')}>
                             <Image style={[styles.headImage]} source={require('../../assets/img/shopping.png')} resizeMode={'contain'}/>
                         </Button>
                     </Right>
@@ -183,7 +215,6 @@ class Home extends Component {
                     {/*<View style={[ styles.position_A, styles.bg_gray, styles.Width_100, styles.height_70, styles.right_0, styles.top_0 ]}/>*/}
 
                     <View style={[ styles.boxUser ]}>
-
 
                         <Modal isVisible={this.state.isModalFilter} onBackdropPress={() => this.toggleModalFilter()} style={[ styles.bottomCenter, styles.Width_100 ]}>
                             <View style={[styles.overHidden, styles.bg_White, styles.flexCenter , styles.Width_100, styles.position_R, styles.top_20]}>
@@ -228,13 +259,24 @@ class Home extends Component {
                                             </View>
 
                                             <View style={[styles.overHidden, styles.rowGroup]}>
-                                                <TouchableOpacity style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}>
-                                                    <Text style={[styles.textRegular, styles.textSize_14, styles.text_black]}>
-                                                        {i18n.translate('mapname')}
+                                                <TouchableOpacity
+                                                    style       = {[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}
+                                                    onPress     = {() => this.getLocation()}
+                                                >
+                                                    <Text style={[styles.textRegular, styles.textSize_14, styles.text_black, styles.width_150]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
+                                                        {this.state.cityName}
                                                     </Text>
                                                     <Icon style={[styles.textSize_20, styles.text_light_gray]} type="Feather" name='map-pin' />
                                                 </TouchableOpacity>
                                             </View>
+
+                                            <TouchableOpacity
+                                                style       = {[styles.bg_red, styles.width_150, styles.flexCenter, styles.marginVertical_15, styles.height_40]}
+                                                onPress     = {() => this.toggleModalFilter()}>
+                                                <Text style={[styles.textRegular, styles.textSize_14, styles.text_White]}>
+                                                    {i18n.translate('search')}
+                                                </Text>
+                                            </TouchableOpacity>
 
                                         </Form>
 
