@@ -51,6 +51,8 @@ class Details extends Component {
             checked2                : '',
             cityName                : i18n.translate('mapname'),
             value2                  : 1,
+            Error                   : '',
+            comment                 : ''
         }
     }
 
@@ -144,6 +146,36 @@ class Details extends Component {
     toggleModalComment = () => {
         this.setState({ isModalComment  : !this.state.isModalComment});
     };
+
+    validate = () => {
+
+        let isError     = false;
+        let msg         = '';
+
+        if (this.state.comment === '') {
+            isError     = true;
+            msg         = i18n.t('addcomm');
+        }else if (this.state.value2.length <= 0) {
+            isError     = true;
+            msg         = i18n.t('starts');
+        }
+
+        if (msg !== '') {
+            this.setState({ Error : msg});
+        }
+
+        return isError;
+    };
+
+    sentComment(){
+
+        const err = this.validate();
+
+        if (!err){
+            this.setState({ isModalComment  : !this.state.isModalComment, Error : ''});
+        }
+
+    }
 
     increment2() {
         if (this.state.value2 < 5)
@@ -942,9 +974,11 @@ class Details extends Component {
                                             </View>
                                         </View>
 
+                                        <Text style={[styles.textRegular, styles.textSize_14, styles.text_red, styles.textCenter]}>{ this.state.Error }</Text>
+
                                         <TouchableOpacity
                                             style       = {[styles.bg_red, styles.width_150, styles.flexCenter, styles.marginVertical_15, styles.height_40]}
-                                            onPress     = {() => this.toggleModalComment()}>
+                                            onPress     = {() => this.sentComment()}>
                                             <Text style={[styles.textRegular, styles.textSize_14, styles.text_White]}>
                                                 {i18n.translate('addComment')}
                                             </Text>

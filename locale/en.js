@@ -182,6 +182,12 @@ const en = {
     'acNum'                             : 'Account number is required',
     'chDate'                            : 'End date must be entered',
     'chCode'                            : 'Confirmation code must be entered',
+    'numorders'                         : 'order number',
+    'numpage'                           : 'number requests',
+    'timeeat'                           : 'time required to implement',
+    'tieat'                             : 'time needed',
+    'starts'                            : 'select the evaluation',
+    'Available'                         : 'Available to everyone',
 
 };
 

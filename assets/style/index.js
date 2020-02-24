@@ -389,6 +389,14 @@ const styles = ({
         alignItems          : 'center',
         flexDirection       : "row",
     },
+    flexRight : {
+        alignSelf           : 'flex-end',
+        alignItems          : 'center',
+    },
+    flexLeft : {
+        alignSelf           : 'flex-start',
+        alignItems          : 'center',
+    },
     scroll: {
         flexDirection       : 'row',
         alignSelf           : 'flex-start',

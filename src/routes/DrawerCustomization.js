@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {View, Text, Image, TouchableOpacity, I18nManager} from "react-native";
-import {Container, Content, Icon} from 'native-base';
+import {Button, Container, Content, Icon} from 'native-base';
 import { DrawerItems } from 'react-navigation-drawer';
 
 import styles from "../../assets/style";
@@ -59,11 +59,11 @@ class DrawerCustomization extends Component {
                         <Icon style={[styles.text_red, styles.textSize_22]} type="AntDesign" name='close' />
                     </TouchableOpacity>
 
-                    <View style={[styles.SelfLeft]}>
+                    <View style={[styles.flexLeft]}>
 
-                        <View style={[styles.SelfLeft, styles.marginVertical_10]}>
+                        <View style={[styles.flexLeft, styles.marginVertical_10]}>
                             <View style={[styles.bg_red, styles.width_150, styles.height_70, styles.position_A, styles.zIndexDown, styles.top_30]}/>
-                            <TouchableOpacity style={[styles.position_R, styles.flexCenter, styles.Width_100, styles.marginHorizontal_25, styles.top_45]}>
+                            <TouchableOpacity style={[styles.position_R, styles.flexCenter, styles.Width_100, styles.marginHorizontal_25, styles.top_45]} onPress = {() => this.props.navigation.navigate('Profile')}>
                                 {/*<Image style={[styles.width_90, styles.height_90, styles.Radius_5]} source={{ uri: user.avatar }}/>*/}
                                 <Image style={[styles.width_90, styles.height_90, styles.Radius_5]} source={require('../../assets/img/girl.png')}/>
                                 <View onPress={() => this.props.navigation.navigate('profile')}>

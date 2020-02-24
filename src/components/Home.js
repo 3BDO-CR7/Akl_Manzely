@@ -98,6 +98,7 @@ class Home extends Component {
         });
 
     }
+
     onSubCategories ( id ){
         this.setState({spinner: true, active : id });
     }

@@ -29,6 +29,10 @@ import FormPayment              from "../components/FormPayment";
 import ConfirmPayment           from "../components/ConfirmPayment";
 import Profile                  from "../components/Profile";
 import EditProfile              from "../components/EditProfile";
+import MyOrders                 from "../components/MyOrders";
+import DetailsOrder             from "../components/DetailsOrder";
+import CallUs                   from "../components/CallUs";
+import Setting                  from "../components/Setting";
 import InitScreen               from "../components/InitScreen";
 import DrawerCustomization      from "./DrawerCustomization";
 
@@ -37,9 +41,10 @@ const drawerCust = (props) => (<DrawerCustomization {...props} />);
 
 const drawerNavigator = createDrawerNavigator({
     Home                : Home,
+    Profile             : Profile,
+    MyOrders            : MyOrders,
     Offers              : Offers,
     Favorite            : Favorite,
-    Profile             : Profile,
     About               : About,
     Faq                 : Faq,
     Terms               : Terms,
@@ -56,6 +61,54 @@ const drawerNavigator = createDrawerNavigator({
 });
 
 const AppNavigator = createStackNavigator({
+    Setting : {
+        screen : Setting,
+        navigationOptions: {
+            header: null
+        }
+    },
+    drawerNavigator: {
+        screen: drawerNavigator,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Language : {
+        screen : Language,
+        navigationOptions: {
+            header: null
+        }
+    },
+    CallUs : {
+        screen : CallUs,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Details : {
+        screen : Details,
+        navigationOptions: {
+            header: null
+        }
+    },
+    MyOrders : {
+        screen : MyOrders,
+        navigationOptions: {
+            header: null
+        }
+    },
+    DetailsOrder : {
+        screen : DetailsOrder,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Profile : {
+        screen : Profile,
+        navigationOptions: {
+            header: null
+        }
+    },
     FormPayment : {
         screen : FormPayment,
         navigationOptions: {
@@ -68,20 +121,8 @@ const AppNavigator = createStackNavigator({
             header: null
         }
     },
-    Profile : {
-        screen : Profile,
-        navigationOptions: {
-            header: null
-        }
-    },
     EditProfile : {
         screen : EditProfile,
-        navigationOptions: {
-            header: null
-        }
-    },
-    drawerNavigator: {
-        screen: drawerNavigator,
         navigationOptions: {
             header: null
         }
@@ -164,12 +205,6 @@ const AppNavigator = createStackNavigator({
             header: null
         }
     },
-    Details : {
-        screen : Details,
-        navigationOptions: {
-            header: null
-        }
-    },
     ActivtionAccount : {
         screen : ActivtionAccount,
         navigationOptions: {
@@ -196,12 +231,6 @@ const AppNavigator = createStackNavigator({
     },
     Login : {
         screen : Login,
-        navigationOptions: {
-            header: null
-        }
-    },
-    Language : {
-        screen : Language,
         navigationOptions: {
             header: null
         }
