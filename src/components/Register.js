@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import {View, Text, Image, TouchableOpacity, AsyncStorage, KeyboardAvoidingView} from "react-native";
+import {View, Text, Image, TouchableOpacity, KeyboardAvoidingView} from "react-native";
 import {Container, Content, Form, Input, Item, Toast, Icon, CheckBox} from 'native-base'
 import styles from '../../assets/style';
 import i18n from '../../locale/i18n'
 import * as Animatable from 'react-native-animatable';
 import {NavigationEvents} from "react-navigation";
 import Modal from "react-native-modal";
-
 import DateTimePicker from "react-native-modal-datetime-picker";
 
 class Register extends Component {

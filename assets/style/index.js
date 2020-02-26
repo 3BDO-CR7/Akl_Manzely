@@ -690,6 +690,9 @@ const styles = ({
     height_150 : {
         height                  : 150
     },
+    height_170 : {
+        height                  : 170
+    },
     height_200 : {
         height                  : 200
     },
@@ -731,6 +734,17 @@ const styles = ({
         paddingTop          : 0,
         paddingBottom       : 0,
         borderBottomWidth   : 0,
+    },
+    label : {
+        borderWidth         : 0,
+        padding             : 0,
+        top                 : 0,
+        zIndex              : 99,
+        backgroundColor     : '#ffffff',
+        opacity             : 1,
+        paddingTop          : 0,
+        paddingBottom       : 0,
+        position            : 'relative'
     },
     input : {
         borderColor         : COLORS.light_gray,

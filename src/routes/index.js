@@ -33,6 +33,10 @@ import MyOrders                 from "../components/MyOrders";
 import DetailsOrder             from "../components/DetailsOrder";
 import CallUs                   from "../components/CallUs";
 import Setting                  from "../components/Setting";
+import BankAccounts             from "../components/BankAccounts";
+import FormBank                 from "../components/FormBank";
+import ViewProduct              from "../components/ViewProduct";
+import TermsAddProduct          from "../components/TermsAddProduct";
 import InitScreen               from "../components/InitScreen";
 import DrawerCustomization      from "./DrawerCustomization";
 
@@ -61,14 +65,56 @@ const drawerNavigator = createDrawerNavigator({
 });
 
 const AppNavigator = createStackNavigator({
-    Setting : {
-        screen : Setting,
+    TermsAddProduct : {
+        screen : TermsAddProduct,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Profile : {
+        screen : Profile,
+        navigationOptions: {
+            header: null
+        }
+    },
+    ViewProduct : {
+        screen : ViewProduct,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Details : {
+        screen : Details,
         navigationOptions: {
             header: null
         }
     },
     drawerNavigator: {
         screen: drawerNavigator,
+        navigationOptions: {
+            header: null
+        }
+    },
+    DetailsChef : {
+        screen : DetailsChef,
+        navigationOptions: {
+            header: null
+        }
+    },
+    FormBank : {
+        screen : FormBank,
+        navigationOptions: {
+            header: null
+        }
+    },
+    BankAccounts : {
+        screen : BankAccounts,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Setting : {
+        screen : Setting,
         navigationOptions: {
             header: null
         }
@@ -85,12 +131,6 @@ const AppNavigator = createStackNavigator({
             header: null
         }
     },
-    Details : {
-        screen : Details,
-        navigationOptions: {
-            header: null
-        }
-    },
     MyOrders : {
         screen : MyOrders,
         navigationOptions: {
@@ -99,12 +139,6 @@ const AppNavigator = createStackNavigator({
     },
     DetailsOrder : {
         screen : DetailsOrder,
-        navigationOptions: {
-            header: null
-        }
-    },
-    Profile : {
-        screen : Profile,
         navigationOptions: {
             header: null
         }
@@ -183,12 +217,6 @@ const AppNavigator = createStackNavigator({
     },
     Notification : {
         screen : Notification,
-        navigationOptions: {
-            header: null
-        }
-    },
-    DetailsChef : {
-        screen : DetailsChef,
         navigationOptions: {
             header: null
         }

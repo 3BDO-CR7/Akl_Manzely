@@ -39,7 +39,8 @@ class EditProfile extends Component {
             cityName                    : 'المنصوره - السنبلاوين - شارع المعيـز',
             userImage                   : '../../assets/img/girl.png',
             latitude                    : 11.11,
-            longitude                   : 11.11
+            longitude                   : 11.11,
+            base64                      : ''
         }
     }
 
@@ -160,8 +161,6 @@ class EditProfile extends Component {
             aspect: [4, 3],
             base64:true
         });
-
-        console.log(result);
 
         if (!result.cancelled) {
             this.setState({ userImage: result.uri ,base64:result.base64});

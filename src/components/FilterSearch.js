@@ -220,7 +220,7 @@ class FilterSearch extends Component {
 
                                         <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}>
                                             <Input
-                                                placeholder={i18n.translate('phone')}
+                                                placeholder={i18n.translate('numchef')}
                                                 style={[styles.input, styles.height_50, (this.state.phoneStatus === 1 ? styles.Active : styles.noActive)]}
                                                 onChangeText={(phone) => this.setState({phone})}
                                                 onBlur={() => this.unActiveInput('phone')}

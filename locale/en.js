@@ -188,6 +188,22 @@ const en = {
     'tieat'                             : 'time needed',
     'starts'                            : 'select the evaluation',
     'Available'                         : 'Available to everyone',
+    'thebank'                           : 'bank accounts',
+    'getmony'                           : 'refund',
+    'namebank'                          : 'bank name',
+    'monynow'                           : 'current amount',
+    'anynotes'                          : 'any notes',
+    'newAcc'                            : 'new account',
+    'transferred'                       : 'name of bank from which transferred',
+    'Holder'                            : 'account holder name',
+    'acountnumber'                      : 'account number',
+    'bepaid'                            : 'amount to be paid',
+    'enterbank'                         : 'Enter the name of the bank',
+    'enterowner'                        : 'Enter the name of the bank owner',
+    'enternumber'                       : 'Enter your account number',
+    'enteramount'                       : 'Enter the amount',
+    'enterpicture'                      : 'Enter the receipt picture',
+    'termsPro'                          : 'Terms and conditions for adding a product',
 
 };
 

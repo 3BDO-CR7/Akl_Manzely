@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {View, Text, Image, TouchableOpacity, ScrollView, FlatList, KeyboardAvoidingView, Share} from "react-native";
+import {View, Text, Image, TouchableOpacity, ScrollView, FlatList, KeyboardAvoidingView, Share, Switch} from "react-native";
 import {
     Container,
     Content,
@@ -36,6 +36,7 @@ class Details extends Component {
             isModalRate             : false,
             isModalSallery          : false,
             isModalComment          : false,
+            isModalSelect           : false,
             active                  : 1,
             count                   : 0,
             projects                : '',
@@ -52,7 +53,9 @@ class Details extends Component {
             cityName                : i18n.translate('mapname'),
             value2                  : 1,
             Error                   : '',
-            comment                 : ''
+            comment                 : '',
+            select                  : 'وجبات سريعه',
+            switchValue             : true
         }
     }
 
@@ -134,6 +137,19 @@ class Details extends Component {
         this.state.SalleId = id;
         this.setState({ isModalSallery  : !this.state.isModalSallery});
         this.setState({ isModalFilter   : !this.state.isModalFilter});
+    }
+
+    toggleModalSelect = () => {
+        this.setState({ isModalSelect   : !this.state.isModalSelect});
+    };
+
+    selectSelectId(id, name) {
+        this.setState({
+            checked         : id,
+            select          : name
+        });
+        this.state.selectId = id;
+        this.setState({ isModalSelect   : !this.state.isModalSelect});
     }
 
     incrementCount(){
@@ -298,7 +314,7 @@ class Details extends Component {
 
                                         <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}>
                                             <Input
-                                                placeholder={i18n.translate('phone')}
+                                                placeholder={i18n.translate('numchef')}
                                                 style={[styles.input, styles.height_50, (this.state.phoneStatus === 1 ? styles.Active : styles.noActive)]}
                                                 onChangeText={(phone) => this.setState({phone})}
                                                 onBlur={() => this.unActiveInput('phone')}
@@ -490,6 +506,57 @@ class Details extends Component {
 
                         </View>
 
+                        {/*<View style={[styles.overHidden, styles.rowGroup]}>*/}
+                        {/*    <TouchableOpacity onPress={() => this.toggleModalSelect()} style={[ styles.marginVertical_5 , styles.marginHorizontal_15 , styles.width_150, styles.paddingHorizontal_10, styles.paddingVertical_10 , styles.rowGroup, styles.bg_red]}>*/}
+                        {/*        <Text style={[styles.textRegular, styles.textSize_14, styles.text_White]}>*/}
+                        {/*            { this.state.select }*/}
+                        {/*        </Text>*/}
+                        {/*        <Icon style={[styles.textSize_14, styles.text_White]} type="AntDesign" name='down' />*/}
+                        {/*    </TouchableOpacity>*/}
+                        {/*</View>*/}
+
+                        {/*<Modal isVisible={this.state.isModalSelect} onBackdropPress={() => this.toggleModalSelect()} style={[ styles.bottomCenter, styles.Width_100 ]}>*/}
+                        {/*    <View style={[styles.overHidden, styles.bg_White, styles.Width_100, styles.position_R, styles.top_20]}>*/}
+
+                        {/*        <View style={[styles.paddingHorizontal_10, styles.marginVertical_10]}>*/}
+                        {/*            <TouchableOpacity*/}
+                        {/*                style               = {[styles.rowGroup, styles.marginVertical_10]}*/}
+                        {/*                onPress             = {() => this.selectSelectId(1, 'وجبات بطيئه')}*/}
+                        {/*            >*/}
+                        {/*                <View style={[styles.overHidden, styles.rowRight]}>*/}
+                        {/*                    <CheckBox*/}
+                        {/*                        style               = {[styles.checkBox, styles.bg_red, styles.border_red]}*/}
+                        {/*                        color               = {styles.text_red}*/}
+                        {/*                        selectedColor       = {styles.text_red}*/}
+                        {/*                        checked             = {this.state.checked === 1}*/}
+                        {/*                    />*/}
+                        {/*                    <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>*/}
+                        {/*                        وجبات بطيئه*/}
+                        {/*                    </Text>*/}
+                        {/*                </View>*/}
+                        {/*            </TouchableOpacity>*/}
+
+                        {/*            <TouchableOpacity*/}
+                        {/*                style               = {[styles.rowGroup, styles.marginVertical_10]}*/}
+                        {/*                onPress             = {() => this.selectSelectId(2, 'وجبات حاره')}*/}
+                        {/*            >*/}
+                        {/*                <View style={[styles.overHidden, styles.rowRight]}>*/}
+                        {/*                    <CheckBox*/}
+                        {/*                        style               = {[styles.checkBox, styles.bg_red, styles.border_red]}*/}
+                        {/*                        color               = {styles.text_red}*/}
+                        {/*                        selectedColor       = {styles.text_red}*/}
+                        {/*                        checked             = {this.state.checked === 2}*/}
+                        {/*                    />*/}
+                        {/*                    <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>*/}
+                        {/*                        وجبات حاره*/}
+                        {/*                    </Text>*/}
+                        {/*                </View>*/}
+                        {/*            </TouchableOpacity>*/}
+                        {/*        </View>*/}
+
+                        {/*    </View>*/}
+                        {/*</Modal>*/}
+
                         <View style={[ styles.height_40, styles.paddingHorizontal_10 ]}>
                             <ScrollView style={[ styles.scroll ]} horizontal={true} showsHorizontalScrollIndicator={false}>
 
@@ -606,6 +673,74 @@ class Details extends Component {
                                         />
                                     </TouchableOpacity>
                                 </View>
+
+                            </View>
+
+                        </View>
+
+                        <View style={[ styles.Border, styles.border_gray, styles.paddingHorizontal_15, styles.paddingVertical_10, styles.marginVertical_10, styles.overHidden, styles.marginHorizontal_15 ]}>
+
+                            <View style={[ styles.rowGroup  ]}>
+                                <View style={[ styles.rowGroup ]}>
+                                    <Text style={[styles.textRegular, styles.text_black, styles.textSize_13]}>
+                                        برجر الندم
+                                    </Text>
+                                </View>
+                                <View style={[ styles.rowGroup ]}>
+                                    <Icon
+                                        style   = {[styles.text_black_gray, styles.textSize_10, styles.marginHorizontal_5]}
+                                        type    = "FontAwesome"
+                                        name    = 'eye'
+                                    />
+                                    <Text style={[styles.textRegular, styles.text_black_gray, styles.textSize_12]}>
+                                        145 مشاهده
+                                    </Text>
+                                </View>
+                            </View>
+
+                            <View style={[ styles.rowGroup, styles.marginVertical_5 ]}>
+                                <Text style = {[styles.textRegular, styles.text_black_gray, styles.textSize_12]}>
+                                    برجر - لحم - سلطه
+                                </Text>
+                            </View>
+
+                            <View style={[ styles.rowGroup, styles.marginVertical_5 ]}>
+                                <Text style = {[styles.textRegular, styles.text_black, styles.textSize_12]}>
+                                    {i18n.translate('timeeat')}
+                                </Text>
+                            </View>
+
+                            <View style={[ styles.rowGroup, styles.marginVertical_5 ]}>
+                                <Text style = {[styles.textRegular, styles.text_black_gray, styles.textSize_12]}>
+                                    1 ساعه
+                                </Text>
+                            </View>
+
+                            <View style={[ styles.rowRight]}>
+                                <Text style={[styles.textRegular, styles.text_black_gray, styles.textSize_13]}>
+                                    {i18n.t('monyproducer')}
+                                </Text>
+                                <Text style = {[styles.textRegular, styles.text_black, styles.textSize_12, styles.border_right, styles.paddingHorizontal_10, styles.marginHorizontal_5]}>
+                                    10 ر.س
+                                </Text>
+                            </View>
+
+                            <View style={[ styles.rowRight]}>
+                                <Text style={[styles.textRegular, styles.text_black_gray, styles.textSize_13]}>
+                                    {i18n.t('monyproducer')}
+                                </Text>
+                                <Switch
+                                    style           = {[ styles.switch, styles.marginHorizontal_25, styles.marginVertical_10 ]}
+                                    onValueChange   = {this.toggleSwitch}
+                                    value           = {this.state.switchValue}
+                                    onTintColor     = {'#F00'}
+                                    thumbTintColor  = {'#fff'}
+                                    tintColor       = {'#DDD'}
+                                    disabled
+                                />
+                            </View>
+
+                            <View style={[ styles.rowGroup, styles.marginVertical_5 ]}>
 
                             </View>
 
