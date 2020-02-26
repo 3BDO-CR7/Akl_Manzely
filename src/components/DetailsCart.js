@@ -49,10 +49,9 @@ class DetailsCart extends Component {
 
     selectDeliveryId(id, name) {
         this.setState({
-            checked     : id,
-            delivery    : name
+            deliveryId      : id,
+            delivery        : name
         });
-        this.state.deliveryId = id;
         this.setState({ isModalDelivery: !this.state.isModalDelivery});
     }
 
@@ -216,8 +215,8 @@ class DetailsCart extends Component {
                     <View style={[ styles.marginVertical_10, styles.paddingHorizontal_5, styles.marginHorizontal_15]}>
 
                         <View style={[styles.overHidden]}>
-                            <TouchableOpacity onPress={() => this.toggleModalDelivery()} style={[ styles.marginVertical_5 , styles.Width_100, styles.paddingHorizontal_10, styles.paddingVertical_10 , styles.rowGroup, styles.bg_White, styles.Border, styles.border_gray]}>
-                                <Text style={[styles.textBold, styles.textSize_13, styles.text_light_gray]}>
+                            <TouchableOpacity onPress={() => this.toggleModalDelivery()} style={[ styles.marginVertical_5 , styles.Width_100, styles.paddingHorizontal_10, styles.paddingVertical_10 , styles.rowGroup, styles.bg_White, styles.Border, (this.state.deliveryId !== null ? styles.border_red : styles.border_gray)]}>
+                                <Text style={[styles.textBold, styles.textSize_13, (this.state.deliveryId !== null ? styles.text_red : styles.text_light_gray)]}>
                                     { this.state.delivery }
                                 </Text>
                                 <Icon style={[styles.textSize_14, styles.text_light_gray]} type="AntDesign" name='down' />
@@ -237,7 +236,7 @@ class DetailsCart extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked === 1}
+                                                checked             = {this.state.deliveryId === 1}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 نفس المكان ال اتقابلنا فيه
@@ -253,7 +252,7 @@ class DetailsCart extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked === 2}
+                                                checked             = {this.state.deliveryId === 2}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 الساعه 2 عند الدمرداش

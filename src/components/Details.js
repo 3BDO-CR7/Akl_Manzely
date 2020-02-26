@@ -55,7 +55,9 @@ class Details extends Component {
             Error                   : '',
             comment                 : '',
             select                  : 'وجبات سريعه',
-            switchValue             : true
+            switchValue             : true,
+            latitude                : null,
+            longitude               : null
         }
     }
 
@@ -110,8 +112,6 @@ class Details extends Component {
     toggleModalRate = () => {
         this.setState({ isModalFilter   : !this.state.isModalFilter});
         this.setState({ isModalRate     : !this.state.isModalRate});
-        console.log(this.state.isModalFilter);
-        console.log(this.state.isModalRate);
     };
 
     toggleModalSallery = () => {
@@ -121,20 +121,18 @@ class Details extends Component {
 
     selectRateId(id, name) {
         this.setState({
-            checked     : id,
+            reteId      : id,
             rate        : name
         });
-        this.state.reteId = id;
         this.setState({ isModalRate     : !this.state.isModalRate});
         this.setState({ isModalFilter   : !this.state.isModalFilter});
     }
 
     selectSellaryId(id, name) {
         this.setState({
-            checked2     : id,
-            Sallery     : name
+            SalleryId    : id,
+            Sallery      : name
         });
-        this.state.SalleId = id;
         this.setState({ isModalSallery  : !this.state.isModalSallery});
         this.setState({ isModalFilter   : !this.state.isModalFilter});
     }
@@ -145,10 +143,9 @@ class Details extends Component {
 
     selectSelectId(id, name) {
         this.setState({
-            checked         : id,
+            selectId        : id,
             select          : name
         });
-        this.state.selectId = id;
         this.setState({ isModalSelect   : !this.state.isModalSelect});
     }
 
@@ -324,8 +321,8 @@ class Details extends Component {
                                         </Item>
 
                                         <View style={[styles.overHidden, styles.rowGroup]}>
-                                            <TouchableOpacity onPress={() => this.toggleModalRate()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}>
-                                                <Text style={[styles.textRegular, styles.textSize_14, styles.text_black]}>
+                                            <TouchableOpacity onPress={() => this.toggleModalRate()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, ( this.state.rateId !== null ? styles.border_red : styles.border_gray )]}>
+                                                <Text style={[styles.textRegular, styles.textSize_14, ( this.state.rateId !== null ? styles.text_red : styles.text_black )]}>
                                                     { this.state.rate }
                                                 </Text>
                                                 <Icon style={[styles.textSize_20, styles.text_light_gray]} type="AntDesign" name='down' />
@@ -333,8 +330,8 @@ class Details extends Component {
                                         </View>
 
                                         <View style={[styles.overHidden, styles.rowGroup]}>
-                                            <TouchableOpacity onPress={() => this.toggleModalSallery()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}>
-                                                <Text style={[styles.textRegular, styles.textSize_14, styles.text_black]}>
+                                            <TouchableOpacity onPress={() => this.toggleModalSallery()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, ( this.state.SalleryId !== null ? styles.border_red : styles.border_gray )]}>
+                                                <Text style={[styles.textRegular, styles.textSize_14, ( this.state.SalleryId !== null ? styles.text_red : styles.text_black )]}>
                                                     { this.state.Sallery }
                                                 </Text>
                                                 <Icon style={[styles.textSize_20, styles.text_light_gray]} type="AntDesign" name='down' />
@@ -343,10 +340,10 @@ class Details extends Component {
 
                                         <View style={[styles.overHidden, styles.rowGroup]}>
                                             <TouchableOpacity
-                                                style       = {[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}
+                                                style       = {[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, (this.state.latitude !== null ||  this.state.longitude !== null ? styles.border_red : styles.border_gray)]}
                                                 onPress     = {() => this.getLocation()}
                                             >
-                                                <Text style={[styles.textRegular, styles.textSize_14, styles.text_black, styles.width_150]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
+                                                <Text style={[styles.textRegular, styles.textSize_14, styles.width_150, (this.state.latitude !== null ||  this.state.longitude !== null ? styles.text_red : styles.text_black)]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
                                                     {this.state.cityName}
                                                 </Text>
                                                 <Icon style={[styles.textSize_20, styles.text_light_gray]} type="Feather" name='map-pin' />
@@ -387,7 +384,7 @@ class Details extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked === 1}
+                                                checked             = {this.state.reteId === 1}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 الآعلي تقييم
@@ -404,7 +401,7 @@ class Details extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked === 2}
+                                                checked             = {this.state.reteId === 2}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 الآقل تقييم
@@ -435,7 +432,7 @@ class Details extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked2 === 1}
+                                                checked             = {this.state.SalleId === 1}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 الآعلي سعر
@@ -452,7 +449,7 @@ class Details extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked2 === 2}
+                                                checked             = {this.state.SalleId === 2}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 الآقل سعر

@@ -20,29 +20,27 @@ class NewProduct extends Component {
     constructor(props){
         super(props);
         this.state = {
-            selectTimeOut               : false,
-            timeOut                     : i18n.t('timeeat'),
-            timeOutId                   : null,
-            price                       : '',
-            priceStatus                 : 0,
-            discount                    : '',
-            discountStatus              : 0,
+            selectFilter                : false,
+            filter                      : i18n.t('producer'),
+            filterId                    : null,
+            name                        : '',
+            nameStatus                  : 0,
 
         }
     }
 
     activeInput(type) {
 
-        if (type === 'price' || this.state.price !== '') {
-            this.setState({priceStatus: 1})
+        if (type === 'name' || this.state.name !== '') {
+            this.setState({nameStatus: 1})
         }
 
     }
 
     unActiveInput(type) {
 
-        if (type === 'price' && this.state.price === '') {
-            this.setState({priceStatus: 0})
+        if (type === 'name' && this.state.name === '') {
+            this.setState({nameStatus: 0})
         }
 
     }
@@ -52,10 +50,10 @@ class NewProduct extends Component {
         let msg         = '';
 
 
-        if (this.state.bg === null) {
+        if (this.state.filterId === null) {
             isError     = true;
-            msg         = i18n.t('infoimage');
-        } else if (this.state.filterId === null) {
+            msg         = i18n.t('kindpro');
+        } else if (this.state.name.length <= 0) {
             isError     = true;
             msg         = i18n.t('namepro');
         }
@@ -86,16 +84,16 @@ class NewProduct extends Component {
 
     }
 
-    toggleModalTimeOut = () => {
-        this.setState({ selectTimeOut: !this.state.selectTimeOut});
+    toggleModalFilter = () => {
+        this.setState({ selectFilter: !this.state.selectFilter});
     };
 
-    selectTimeOut(id, name) {
+    selectfilterId(id, name) {
         this.setState({
-            timeOutId        : id,
-            timeOut          : name
+            filterId         : id,
+            filter           : name
         });
-        this.setState({ selectTimeOut: !this.state.selectTimeOut});
+        this.setState({ selectFilter: !this.state.selectFilter});
     }
 
     componentWillMount() {
@@ -134,59 +132,59 @@ class NewProduct extends Component {
 
                     <View style={[ styles.position_R, styles.zIndex, styles.Width_100 , styles.paddingVertical_10]}>
 
-                        <View style={[ styles.marginVertical_10, styles.Width_85, styles.flexCenter ]}>
+                        <View style={[ styles.marginVertical_10, styles.Width_90, styles.flexCenter, styles.bg_White, styles.paddingHorizontal_10 ]}>
 
                             <Form style={[styles.flexCenter, styles.marginVertical_10, styles.Width_100]}>
 
                                 <View style={[styles.overHidden, styles.rowGroup]}>
-                                    <TouchableOpacity onPress={() => this.toggleModalSelect()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, (this.state.selectId !== null ? styles.border_red :  styles.border_gray )]}>
-                                        <Text style={[styles.textRegular, styles.textSize_14, (this.state.selectId !== null ? styles.text_red :  styles.text_black )]}>
-                                            { this.state.timeOut }
+                                    <TouchableOpacity onPress={() => this.toggleModalFilter()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, (this.state.filterId !== null ? styles.border_red :  styles.border_gray )]}>
+                                        <Text style={[styles.textRegular, styles.textSize_14, (this.state.filterId !== null ? styles.text_red :  styles.text_black )]}>
+                                            { this.state.filter }
                                         </Text>
                                         <Icon style={[styles.textSize_20, styles.text_light_gray]} type="AntDesign" name='down' />
                                     </TouchableOpacity>
                                 </View>
 
-                                <Modal isVisible={this.state.selectTimeOut} onBackdropPress={() => this.toggleModalSelect()}>
+                                <Modal isVisible={this.state.selectFilter} onBackdropPress={() => this.toggleModalFilter()}>
                                     <View style={[styles.overHidden, styles.bg_White, styles.Radius_5]}>
 
                                         <View style={[styles.Border, styles.border_gray, styles.paddingVertical_15]}>
                                             <Text style={[styles.textRegular, styles.text_black, styles.textSize_14, styles.textLeft , styles.SelfCenter]}>
-                                                {i18n.t('timeeat')}
+                                                {i18n.t('producer')}
                                             </Text>
                                         </View>
 
                                         <View style={[styles.paddingHorizontal_10, styles.marginVertical_10]}>
                                             <TouchableOpacity
                                                 style               = {[styles.rowGroup, styles.marginVertical_10]}
-                                                onPress             = {() => this.selectTimeOut(1, 'ذكر')}
+                                                onPress             = {() => this.selectfilterId(1, 'لحم')}
                                             >
                                                 <View style={[styles.overHidden, styles.rowRight]}>
                                                     <CheckBox
                                                         style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                         color               = {styles.text_red}
                                                         selectedColor       = {styles.text_red}
-                                                        checked             = {this.state.timeOutId === 1}
+                                                        checked             = {this.state.filterId === 1}
                                                     />
                                                     <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
-                                                        ذكر
+                                                        لحم
                                                     </Text>
                                                 </View>
                                             </TouchableOpacity>
 
                                             <TouchableOpacity
                                                 style               = {[styles.rowGroup, styles.marginVertical_10]}
-                                                onPress             = {() => this.selectTimeOut(2, 'إنثي')}
+                                                onPress             = {() => this.selectfilterId(2, 'برجر')}
                                             >
                                                 <View style={[styles.overHidden, styles.rowRight]}>
                                                     <CheckBox
                                                         style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                         color               = {styles.text_red}
                                                         selectedColor       = {styles.text_red}
-                                                        checked             = {this.state.timeOutId === 2}
+                                                        checked             = {this.state.filterId === 2}
                                                     />
                                                     <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
-                                                        إنثي
+                                                        برجر
                                                     </Text>
                                                 </View>
                                             </TouchableOpacity>
@@ -198,12 +196,12 @@ class NewProduct extends Component {
                                 <View style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}>
                                     <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}>
                                         <Input
-                                            placeholder={i18n.translate('monyproducer')}
-                                            style={[styles.input, styles.height_50, (this.state.priceStatus === 1 ? styles.Active : styles.noActive)]}
-                                            onChangeText={(price) => this.setState({price})}
-                                            onBlur={() => this.unActiveInput('price')}
-                                            onFocus= {() => this.activeInput('price')}
-                                            value= {this.state.price}
+                                            placeholder={i18n.translate('nameproducer')}
+                                            style={[styles.input, styles.height_50, (this.state.nameStatus === 1 ? styles.Active : styles.noActive)]}
+                                            onChangeText={(name) => this.setState({name})}
+                                            onBlur={() => this.unActiveInput('name')}
+                                            onFocus= {() => this.activeInput('name')}
+                                            value= {this.state.name}
                                         />
                                     </Item>
                                 </View>

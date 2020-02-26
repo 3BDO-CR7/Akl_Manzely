@@ -50,6 +50,8 @@ class FilterSearch extends Component {
             checked                 : '',
             checked2                : '',
             cityName                : i18n.translate('mapname'),
+            latitude                : null,
+            longitude               : null
         }
     }
 
@@ -113,20 +115,18 @@ class FilterSearch extends Component {
 
     selectRateId(id, name) {
         this.setState({
-            checked     : id,
+            reteId      : id,
             rate        : name
         });
-        this.state.reteId = id;
         this.setState({ isModalRate     : !this.state.isModalRate});
         this.setState({ isModalFilter   : !this.state.isModalFilter});
     }
 
     selectSellaryId(id, name) {
         this.setState({
-            checked2     : id,
+            SalleryId   : id,
             Sallery     : name
         });
-        this.state.SalleId = id;
         this.setState({ isModalSallery  : !this.state.isModalSallery});
         this.setState({ isModalFilter   : !this.state.isModalFilter});
     }
@@ -230,8 +230,8 @@ class FilterSearch extends Component {
                                         </Item>
 
                                         <View style={[styles.overHidden, styles.rowGroup]}>
-                                            <TouchableOpacity onPress={() => this.toggleModalRate()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}>
-                                                <Text style={[styles.textRegular, styles.textSize_14, styles.text_black]}>
+                                            <TouchableOpacity onPress={() => this.toggleModalRate()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, ( this.state.rateId !== null ? styles.border_red : styles.border_gray )]}>
+                                                <Text style={[styles.textRegular, styles.textSize_14, ( this.state.rateId !== null ? styles.text_red : styles.text_black )]}>
                                                     { this.state.rate }
                                                 </Text>
                                                 <Icon style={[styles.textSize_20, styles.text_light_gray]} type="AntDesign" name='down' />
@@ -239,8 +239,8 @@ class FilterSearch extends Component {
                                         </View>
 
                                         <View style={[styles.overHidden, styles.rowGroup]}>
-                                            <TouchableOpacity onPress={() => this.toggleModalSallery()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}>
-                                                <Text style={[styles.textRegular, styles.textSize_14, styles.text_black]}>
+                                            <TouchableOpacity onPress={() => this.toggleModalSallery()} style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, ( this.state.SalleryId !== null ? styles.border_red : styles.border_gray )]}>
+                                                <Text style={[styles.textRegular, styles.textSize_14, ( this.state.SalleryId !== null ? styles.text_red : styles.text_black )]}>
                                                     { this.state.Sallery }
                                                 </Text>
                                                 <Icon style={[styles.textSize_20, styles.text_light_gray]} type="AntDesign" name='down' />
@@ -249,10 +249,10 @@ class FilterSearch extends Component {
 
                                         <View style={[styles.overHidden, styles.rowGroup]}>
                                             <TouchableOpacity
-                                                style       = {[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}
+                                                style       = {[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, (this.state.latitude !== null ||  this.state.longitude !== null ? styles.border_red : styles.border_gray)]}
                                                 onPress     = {() => this.getLocation()}
                                             >
-                                                <Text style={[styles.textRegular, styles.textSize_14, styles.text_black, styles.width_150]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
+                                                <Text style={[styles.textRegular, styles.textSize_14, styles.width_150, (this.state.latitude !== null ||  this.state.longitude !== null ? styles.text_red : styles.text_black)]} numberOfLines = { 1 } prop with ellipsizeMode = "tail">
                                                     {this.state.cityName}
                                                 </Text>
                                                 <Icon style={[styles.textSize_20, styles.text_light_gray]} type="Feather" name='map-pin' />
@@ -293,7 +293,7 @@ class FilterSearch extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked === 1}
+                                                checked             = {this.state.reteId === 1}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 الآعلي تقييم
@@ -310,7 +310,7 @@ class FilterSearch extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked === 2}
+                                                checked             = {this.state.reteId === 2}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 الآقل تقييم
@@ -341,7 +341,7 @@ class FilterSearch extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked2 === 1}
+                                                checked             = {this.state.SalleryId === 1}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 الآعلي سعر
@@ -358,7 +358,7 @@ class FilterSearch extends Component {
                                                 style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                 color               = {styles.text_red}
                                                 selectedColor       = {styles.text_red}
-                                                checked             = {this.state.checked2 === 2}
+                                                checked             = {this.state.SalleryId === 2}
                                             />
                                             <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                 الآقل سعر

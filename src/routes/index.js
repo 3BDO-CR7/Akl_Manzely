@@ -68,14 +68,86 @@ const drawerNavigator = createDrawerNavigator({
 });
 
 const AppNavigator = createStackNavigator({
-    NewProduct : {
-        screen : NewProduct,
+    AddProduct : {
+        screen : AddProduct,
         navigationOptions: {
             header: null
         }
     },
-    AddProduct : {
-        screen : AddProduct,
+    drawerNavigator: {
+        screen: drawerNavigator,
+        navigationOptions: {
+            header: null
+        }
+    },
+    ViewProduct : {
+        screen : ViewProduct,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Setting : {
+        screen : Setting,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Register : {
+        screen : Register,
+        navigationOptions: {
+            header: null
+        }
+    },
+    FormPayment : {
+        screen : FormPayment,
+        navigationOptions: {
+            header: null
+        }
+    },
+    FormBank : {
+        screen : FormBank,
+        navigationOptions: {
+            header: null
+        }
+    },
+    FilterSearch : {
+        screen : FilterSearch,
+        navigationOptions: {
+            header: null
+        }
+    },
+    EditProfile : {
+        screen : EditProfile,
+        navigationOptions: {
+            header: null
+        }
+    },
+    DetailsCart : {
+        screen : DetailsCart,
+        navigationOptions: {
+            header: null
+        }
+    },
+    DetailsOrder : {
+        screen : DetailsOrder,
+        navigationOptions: {
+            header: null
+        }
+    },
+    DetailsChef : {
+        screen : DetailsChef,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Details : {
+        screen : Details,
+        navigationOptions: {
+            header: null
+        }
+    },
+    NewProduct : {
+        screen : NewProduct,
         navigationOptions: {
             header: null
         }
@@ -98,44 +170,8 @@ const AppNavigator = createStackNavigator({
             header: null
         }
     },
-    ViewProduct : {
-        screen : ViewProduct,
-        navigationOptions: {
-            header: null
-        }
-    },
-    Details : {
-        screen : Details,
-        navigationOptions: {
-            header: null
-        }
-    },
-    drawerNavigator: {
-        screen: drawerNavigator,
-        navigationOptions: {
-            header: null
-        }
-    },
-    DetailsChef : {
-        screen : DetailsChef,
-        navigationOptions: {
-            header: null
-        }
-    },
-    FormBank : {
-        screen : FormBank,
-        navigationOptions: {
-            header: null
-        }
-    },
     BankAccounts : {
         screen : BankAccounts,
-        navigationOptions: {
-            header: null
-        }
-    },
-    Setting : {
-        screen : Setting,
         navigationOptions: {
             header: null
         }
@@ -158,30 +194,6 @@ const AppNavigator = createStackNavigator({
             header: null
         }
     },
-    DetailsOrder : {
-        screen : DetailsOrder,
-        navigationOptions: {
-            header: null
-        }
-    },
-    FormPayment : {
-        screen : FormPayment,
-        navigationOptions: {
-            header: null
-        }
-    },
-    Register : {
-        screen : Register,
-        navigationOptions: {
-            header: null
-        }
-    },
-    EditProfile : {
-        screen : EditProfile,
-        navigationOptions: {
-            header: null
-        }
-    },
     ConfirmPayment : {
         screen : ConfirmPayment,
         navigationOptions: {
@@ -190,12 +202,6 @@ const AppNavigator = createStackNavigator({
     },
     Payment : {
         screen : Payment,
-        navigationOptions: {
-            header: null
-        }
-    },
-    DetailsCart : {
-        screen : DetailsCart,
         navigationOptions: {
             header: null
         }
@@ -238,12 +244,6 @@ const AppNavigator = createStackNavigator({
     },
     Notification : {
         screen : Notification,
-        navigationOptions: {
-            header: null
-        }
-    },
-    FilterSearch : {
-        screen : FilterSearch,
         navigationOptions: {
             header: null
         }

@@ -45,6 +45,7 @@ class AddProduct extends Component {
             imageBrowserOpen            : false,
             cameraBrowserOpen           : false,
             photos                      : [],
+            arrayInputs                 : [],
 
         }
     }
@@ -73,12 +74,21 @@ class AddProduct extends Component {
 
     }
 
+    joinData = () => {
+
+        // this.state.arrayInputs.push("<View style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}> <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}><Input style={[styles.input, styles.height_50]} value={}'/></Item></View>");
+        this.state.arrayInputs.push('<Text>dsvsd</Text>');
+        this.setState({ arrayInputs: this.state.arrayInputs });
+        console.log('arrayInputs', this.state.arrayInputs);
+
+    }
+
     validate = () => {
         let isError     = false;
         let msg         = '';
 
 
-        if (this.state.bg === null) {
+        if (this.state.photos.length <= 0) {
             isError     = true;
             msg         = i18n.t('infoimage');
         } else if (this.state.filterId === null) {
@@ -599,8 +609,15 @@ class AddProduct extends Component {
                                     </View>
                                 </Modal>
 
+                                <View>
+                                    {this.state.arrayInputs}
+                                </View>
+
                                 <View style={[styles.overHidden, styles.rowGroup]}>
-                                    <TouchableOpacity style={[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}>
+                                    <TouchableOpacity
+                                        style       = {[ styles.marginVertical_10 , styles.Width_100, styles.height_50 , styles.paddingHorizontal_20, styles.paddingVertical_10 , styles.rowGroup, styles.Border, styles.border_gray]}
+                                        onPress     = {() => this.joinData()}
+                                    >
                                         <Text style={[styles.textRegular, styles.textSize_14]}>
                                             { i18n.t('adding') }
                                         </Text>
