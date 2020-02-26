@@ -666,7 +666,7 @@ class AddProduct extends Component {
                                     </Text>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity style={[ styles.marginVertical_10, styles.Width_100, styles.rowCenter ]} onPress={() => this.props.navigation.navigate('EditProfile')}>
+                                <TouchableOpacity style={[ styles.marginVertical_10, styles.Width_100, styles.rowCenter ]} onPress={() => this.props.navigation.navigate('NewProduct')}>
                                     <Text style={[ styles.textRegular , styles.text_red, styles.textSize_14, styles.textDecoration ]}>
                                         { i18n.t('neworder') }
                                     </Text>
