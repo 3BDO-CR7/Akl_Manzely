@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d658ac4b-2b40-4731-97e5-470a197671de" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/components/AddProduct.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddProduct.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Details.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DetailsCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DetailsCart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FilterSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FilterSearch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NewProduct.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewProduct.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +18,15 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/locale/ar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="100" column="11" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="599">
@@ -38,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/AddProduct.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="79" column="48" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
+            <state relative-caret-position="106">
+              <caret line="78" column="248" selection-start-line="78" selection-start-column="248" selection-end-line="78" selection-end-column="248" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="e#34709#37270#0" />
@@ -168,6 +171,11 @@
             <path>
               <item name="akl-manzely" type="b2602c69:ProjectViewProjectNode" />
               <item name="akl-manzely" type="462c0819:PsiDirectoryNode" />
+              <item name="locale" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="akl-manzely" type="b2602c69:ProjectViewProjectNode" />
+              <item name="akl-manzely" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -215,12 +223,12 @@
       <option name="presentableId" value="Default" />
       <updated>1581854300886</updated>
       <workItem from="1581854306307" duration="510000" />
-      <workItem from="1581860622961" duration="145453000" />
+      <workItem from="1581860622961" duration="145880000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145963000" />
+    <option name="totallyTimeSpent" value="146390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1094" height="809" extended-state="0" />
@@ -588,13 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/locale/ar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="101" column="17" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NewProduct.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="610">
@@ -721,10 +722,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/locale/ar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="100" column="11" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/AddProduct.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="79" column="48" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
+        <state relative-caret-position="106">
+          <caret line="78" column="248" selection-start-line="78" selection-start-column="248" selection-end-line="78" selection-end-column="248" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <element signature="e#34709#37270#0" />

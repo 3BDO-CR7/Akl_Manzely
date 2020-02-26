@@ -76,10 +76,8 @@ class AddProduct extends Component {
 
     joinData = () => {
 
-        // this.state.arrayInputs.push("<View style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}> <Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}><Input style={[styles.input, styles.height_50]} value={}'/></Item></View>");
-        this.state.arrayInputs.push('<Text>dsvsd</Text>');
+        this.state.arrayInputs.push(<View style={[styles.position_R, styles.overHidden, styles.height_70, styles.flexCenter]}><Item floatingLabel style={[styles.item, styles.position_R, styles.overHidden]}><Input placeholder={i18n.translate('addpro')} style={[styles.input, styles.height_50]}/></Item></View>);
         this.setState({ arrayInputs: this.state.arrayInputs });
-        console.log('arrayInputs', this.state.arrayInputs);
 
     }
 
