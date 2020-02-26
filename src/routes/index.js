@@ -68,14 +68,14 @@ const drawerNavigator = createDrawerNavigator({
 });
 
 const AppNavigator = createStackNavigator({
-    AddProduct : {
-        screen : AddProduct,
+    drawerNavigator: {
+        screen: drawerNavigator,
         navigationOptions: {
             header: null
         }
     },
-    drawerNavigator: {
-        screen: drawerNavigator,
+    AddProduct : {
+        screen : AddProduct,
         navigationOptions: {
             header: null
         }
