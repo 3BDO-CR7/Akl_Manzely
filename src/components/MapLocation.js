@@ -140,6 +140,12 @@ class MapLocation extends Component {
                     latitude        : this.state.mapRegion.latitude,
                     longitude       : this.state.mapRegion.longitude,
                 })
+            }else if (pageName === 'EditShop'){
+                this.props.navigation.navigate('EditShop', {
+                    city_name       : this.state.city,
+                    latitude        : this.state.mapRegion.latitude,
+                    longitude       : this.state.mapRegion.longitude,
+                })
             }
 
         }

@@ -211,6 +211,13 @@ const ar = {
     'enterpicture'              : 'ادخل صوره الإيصال',
     'numchef'                   : 'رقم الشيف',
     'termsPro'                  : 'الشروط والآحكام الخاصه بإضافه منتج',
+    'termsAdd'                  : 'شروط إضافه المنتج',
+    'filtermon'                 : 'تصنيف المنتج',
+    'filtersub'                 : 'تصنيف فرعي',
+    'filrsub'                   : 'اختر التصنيف الفرعي',
+    'termlern'                  : 'شرح لكيفيه إضافه منتج',
+    'neworder'                  : 'إضافه طلب جديد',
+    'adding'                    : 'الإضافات',
 };
 
 export default ar;

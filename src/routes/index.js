@@ -37,6 +37,9 @@ import BankAccounts             from "../components/BankAccounts";
 import FormBank                 from "../components/FormBank";
 import ViewProduct              from "../components/ViewProduct";
 import TermsAddProduct          from "../components/TermsAddProduct";
+import EditShop                 from "../components/EditShop";
+import AddProduct               from "../components/AddProduct";
+import NewProduct               from "../components/NewProduct";
 import InitScreen               from "../components/InitScreen";
 import DrawerCustomization      from "./DrawerCustomization";
 
@@ -65,6 +68,24 @@ const drawerNavigator = createDrawerNavigator({
 });
 
 const AppNavigator = createStackNavigator({
+    NewProduct : {
+        screen : NewProduct,
+        navigationOptions: {
+            header: null
+        }
+    },
+    AddProduct : {
+        screen : AddProduct,
+        navigationOptions: {
+            header: null
+        }
+    },
+    EditShop : {
+        screen : EditShop,
+        navigationOptions: {
+            header: null
+        }
+    },
     TermsAddProduct : {
         screen : TermsAddProduct,
         navigationOptions: {

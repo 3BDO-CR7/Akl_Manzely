@@ -458,6 +458,9 @@ const styles = ({
     flex_40 : {
         flexBasis           : '40%'
     },
+    flex_45 : {
+        flexBasis           : '45%'
+    },
     flex_50 : {
         flexBasis           : '50%'
     },

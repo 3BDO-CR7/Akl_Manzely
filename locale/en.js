@@ -204,6 +204,11 @@ const en = {
     'enteramount'                       : 'Enter the amount',
     'enterpicture'                      : 'Enter the receipt picture',
     'termsPro'                          : 'Terms and conditions for adding a product',
+    'termsAdd'                          : 'terms add product',
+    'filtermon'                         : 'classification products',
+    'filtersub'                         : 'subcategory',
+    'filrsub'                           : 'choose subcategory',
+    'neworder'                          : 'add new order',
 
 };
 

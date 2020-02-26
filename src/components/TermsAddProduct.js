@@ -48,7 +48,7 @@ class TermsAddProduct extends Component {
                     </Left>
                     <Body style={styles.bodyText}>
                         <Title style={[styles.textRegular , styles.text_red, styles.textSize_16, styles.textLeft, styles.Width_100, styles.paddingHorizontal_5, styles.paddingVertical_0]}>
-                            { i18n.t('terms') }
+                            { i18n.t('termsAdd') }
                         </Title>
                     </Body>
                 </Header>
