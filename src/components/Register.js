@@ -185,10 +185,9 @@ class Register extends Component {
 
     selectCountryId(id, name) {
         this.setState({
-            checked2    : id,
-            country     : name
+            countryId    : id,
+            country      : name
         });
-        this.state.countryId = id;
         this.setState({ isModalCountry: !this.state.isModalCountry});
     }
 
@@ -198,10 +197,9 @@ class Register extends Component {
 
     selectNationalityId(id, name) {
         this.setState({
-            checked         : id,
-            nationality     : name
+            nationalityId       : id,
+            nationality         : name
         });
-        this.state.nationalityId = id;
         this.setState({ isModalNationality: !this.state.isModalNationality});
     }
 
@@ -324,7 +322,7 @@ class Register extends Component {
                                                         style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                         color               = {styles.text_red}
                                                         selectedColor       = {styles.text_red}
-                                                        checked             = {this.state.checked === 1}
+                                                        checked             = {this.state.nationalityId === 1}
                                                     />
                                                     <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                         ذكر
@@ -341,7 +339,7 @@ class Register extends Component {
                                                         style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                         color               = {styles.text_red}
                                                         selectedColor       = {styles.text_red}
-                                                        checked             = {this.state.checked === 2}
+                                                        checked             = {this.state.nationalityId === 2}
                                                     />
                                                     <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                         إنثي
@@ -381,7 +379,7 @@ class Register extends Component {
                                                         style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                         color               = {styles.text_red}
                                                         selectedColor       = {styles.text_red}
-                                                        checked             = {this.state.checked2 === 1}
+                                                        checked             = {this.state.countryId === 1}
                                                     />
                                                     <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                         الرياض
@@ -398,7 +396,7 @@ class Register extends Component {
                                                         style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                         color               = {styles.text_red}
                                                         selectedColor       = {styles.text_red}
-                                                        checked             = {this.state.checked2 === 2}
+                                                        checked             = {this.state.countryId === 2}
                                                     />
                                                     <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                         السعوديه
@@ -415,7 +413,7 @@ class Register extends Component {
                                                         style               = {[styles.checkBox, styles.bg_red, styles.border_red]}
                                                         color               = {styles.text_red}
                                                         selectedColor       = {styles.text_red}
-                                                        checked             = {this.state.checked === 3}
+                                                        checked             = {this.state.countryId === 3}
                                                     />
                                                     <Text style={[styles.textRegular , styles.text_black, styles.textSize_16, styles.paddingHorizontal_20]}>
                                                         مصر
