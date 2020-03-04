@@ -61,7 +61,7 @@ class Balance extends Component {
 
     static navigationOptions = () => ({
         header          : null,
-        drawerLabel     : (<Text style={[styles.textRegular, styles.textSize_16]}>{i18n.translate('myorder')}</Text>) ,
+        drawerLabel     : (<Text style={[styles.textRegular, styles.textSize_16]}>{i18n.translate('balance')}</Text>) ,
         drawerIcon      : (<Image style={[styles.headImage]} source={require('../../assets/img/file.png')} resizeMode={'contain'}/>)
     });
 
@@ -78,7 +78,7 @@ class Balance extends Component {
                     </Left>
                     <Body style={styles.bodyText}>
                         <Title style={[styles.textRegular , styles.text_red, styles.textSize_16, styles.textLeft, styles.Width_100, styles.paddingHorizontal_5, styles.paddingVertical_0]}>
-                            { i18n.t('myorder') }
+                            { i18n.t('balance') }
                         </Title>
                     </Body>
                 </Header>

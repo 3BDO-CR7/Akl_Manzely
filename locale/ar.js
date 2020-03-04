@@ -220,6 +220,7 @@ const ar = {
     'adding'                    : 'الإضافات',
     'deservedamount'            : 'المبلغ المستحق',
     'kindorder'                 : 'نوع الطلب',
+    'balance'                   : 'الرصيد',
 };
 
 export default ar;

@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d658ac4b-2b40-4731-97e5-470a197671de" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Balance.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/style/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/style/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locale/ar.js" beforeDir="false" afterPath="$PROJECT_DIR$/locale/ar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locale/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Balance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Balance.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/locale/ar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="220" column="19" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="19" />
+            <state relative-caret-position="544">
+              <caret line="222" column="32" selection-start-line="222" selection-start-column="32" selection-end-line="222" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -34,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/locale/en.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="211" column="19" selection-start-line="211" selection-start-column="5" selection-end-line="211" selection-end-column="19" />
+            <state relative-caret-position="587">
+              <caret line="212" column="12" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -55,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Balance.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="145" column="79" selection-start-line="145" selection-start-column="79" selection-end-line="145" selection-end-column="79" />
+            <state relative-caret-position="182">
+              <caret line="64" column="98" selection-start-line="64" selection-start-column="98" selection-end-line="64" selection-end-column="98" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="e#4721#7444#0" />
@@ -83,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.block_e3lan a</find>
       <find>.block_e3lan div strong</find>
       <find>.btn_button</find>
       <find>.shape_1:before</find>
@@ -113,6 +109,7 @@
       <find>confi</find>
       <find>selectNationalityId</find>
       <find>المبلغ</find>
+      <find>balance</find>
     </findStrings>
     <replaceStrings>
       <replace>light_gray</replace>
@@ -174,9 +171,9 @@
         <option value="&lt;80826ff9-4223-417a-92a8-1d705c5c4779&gt;/haraj_new/detils-e3lan.html" />
         <option value="&lt;80826ff9-4223-417a-92a8-1d705c5c4779&gt;/haraj_new/css/style.css" />
         <option value="$PROJECT_DIR$/src/routes/index.js" />
-        <option value="$PROJECT_DIR$/locale/en.js" />
-        <option value="$PROJECT_DIR$/locale/ar.js" />
         <option value="$PROJECT_DIR$/assets/style/index.js" />
+        <option value="$PROJECT_DIR$/locale/ar.js" />
+        <option value="$PROJECT_DIR$/locale/en.js" />
         <option value="$PROJECT_DIR$/src/components/Balance.js" />
       </list>
     </option>
@@ -266,12 +263,12 @@
       <updated>1581854300886</updated>
       <workItem from="1581854306307" duration="510000" />
       <workItem from="1581860622961" duration="155907000" />
-      <workItem from="1583083963617" duration="25499000" />
+      <workItem from="1583083963617" duration="25638000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181916000" />
+    <option name="totallyTimeSpent" value="182055000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -710,13 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/locale/en.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="211" column="19" selection-start-line="211" selection-start-column="5" selection-end-line="211" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Details.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-13988">
@@ -741,15 +731,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/locale/ar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="220" column="19" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="19" />
+        <state relative-caret-position="544">
+          <caret line="222" column="32" selection-start-line="222" selection-start-column="32" selection-end-line="222" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/locale/en.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="212" column="12" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Balance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="145" column="79" selection-start-line="145" selection-start-column="79" selection-end-line="145" selection-end-column="79" />
+        <state relative-caret-position="182">
+          <caret line="64" column="98" selection-start-line="64" selection-start-column="98" selection-end-line="64" selection-end-column="98" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <element signature="e#4721#7444#0" />
