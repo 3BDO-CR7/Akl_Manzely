@@ -218,6 +218,8 @@ const ar = {
     'termlern'                  : 'شرح لكيفيه إضافه منتج',
     'neworder'                  : 'إضافه طلب جديد',
     'adding'                    : 'الإضافات',
+    'deservedamount'            : 'المبلغ المستحق',
+    'kindorder'                 : 'نوع الطلب',
 };
 
 export default ar;

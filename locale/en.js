@@ -209,6 +209,7 @@ const en = {
     'filtersub'                         : 'subcategory',
     'filrsub'                           : 'choose subcategory',
     'neworder'                          : 'add new order',
+    'deservedamount'                    : 'deserved amount',
 
 };
 

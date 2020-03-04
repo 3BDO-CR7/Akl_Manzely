@@ -40,6 +40,7 @@ import TermsAddProduct          from "../components/TermsAddProduct";
 import EditShop                 from "../components/EditShop";
 import AddProduct               from "../components/AddProduct";
 import NewProduct               from "../components/NewProduct";
+import Balance                  from "../components/Balance";
 import InitScreen               from "../components/InitScreen";
 import DrawerCustomization      from "./DrawerCustomization";
 
@@ -68,6 +69,12 @@ const drawerNavigator = createDrawerNavigator({
 });
 
 const AppNavigator = createStackNavigator({
+    Balance: {
+        screen: Balance,
+        navigationOptions: {
+            header: null
+        }
+    },
     drawerNavigator: {
         screen: drawerNavigator,
         navigationOptions: {
